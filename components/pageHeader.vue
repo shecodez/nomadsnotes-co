@@ -3,14 +3,13 @@ const config = useRuntimeConfig();
 
 const categories = [
   "Flight",
-  "Accomodation",
+  "Accommodation",
   "Public transit",
   "Food",
   "Adventure",
   "Photography",
 ];
 const menuNavigation = [
-  "Home",
   "About",
   "WTH",
   "Stationary",
@@ -31,19 +30,27 @@ function toggleSearch() {
   isOpenNavMenu.value = false;
 }
 
-watch(
-  () => isOpenNavMenu || isOpenSearch,
-  (isOpen) => {
-    const bodyEl = document.querySelector("body");
-    if (isOpen) {
-      // Disable scroll
-      bodyEl!.style.overflow = "hidden";
-    } else {
-      // Enable scroll
-      bodyEl!.style.overflow = "auto";
-    }
+watch(isOpenNavMenu, (isOpen, _) => {
+  const bodyEl = document.querySelector("body");
+  if (isOpen) {
+    // Disable scroll
+    bodyEl!.style.overflow = "hidden";
+  } else {
+    // Enable scroll
+    if (!isOpenSearch.value) bodyEl!.style.overflow = "auto";
   }
-);
+});
+
+watch(isOpenSearch, (isOpen, _) => {
+  const bodyEl = document.querySelector("body");
+  if (isOpen) {
+    // Disable scroll
+    bodyEl!.style.overflow = "hidden";
+  } else {
+    // Enable scroll
+    if (!isOpenNavMenu.value) bodyEl!.style.overflow = "auto";
+  }
+});
 </script>
 
 <template>
@@ -52,27 +59,29 @@ watch(
       v-if="!isOpenNavMenu && !isOpenSearch"
       class="header-bg absolute inset-0 h-full z--1"
     />
-    <div flex-1 py-4 px-8 md:text-xl class="fx-2-ic">
-      <div flex-1>
-        <div>
-          <nuxt-link to="/">
-            <img src="/images/favicon-t.png" alt="logo" class="min-w-10 h-auto"
-          /></nuxt-link>
-
-          <!-- <div text-xs>{{ categories.join(" · ") }} ·</div> -->
-        </div>
+    <div flex-1 py-4 px-8 class="fx-2-ic">
+      <div flex-1 w-0 relative>
+        <nuxt-link to="/" class="block w-32 absolute top-0">
+          <img src="/images/categories_logo_only-t.png" alt="logo" absolute />
+          <img
+            src="/images/categories_only-t.png"
+            alt="logo"
+            class="absolute animate-spin-60"
+          />
+        </nuxt-link>
+        <!-- <div text-xs>{{ categories.join(" · ") }} ·</div> -->
       </div>
 
       <div
         class="flex gap-2 flex-wrap-reverse items-center justify-center text-2xl"
       >
-        <ul flex gap-2 text-primary class="font-cursive">
+        <ul flex gap-2 text-gray-7 class="font-cursive">
           <li v-for="(_, i) in 3" :key="categories[i]">
             {{ categories[i] }}
           </li>
         </ul>
 
-        <div px-4 mb--2 order-2 lg:order-none>
+        <div px-4 mb-2 order-2 lg:order-none>
           <button
             @click="toggleMenu"
             class="btn-toggle-menu"
@@ -89,14 +98,14 @@ watch(
         </div>
         <div h-0 flex-basis-full order-1 />
 
-        <ul flex gap-2 text-primary class="font-cursive">
+        <ul flex gap-2 text-gray-7 class="font-cursive">
           <li v-for="i in 3" :key="categories[i + 2]">
             {{ categories[i + 2] }}
           </li>
         </ul>
       </div>
 
-      <div flex-1 justify-end>
+      <div flex-1 w-0 flex justify-end>
         <button
           @click="toggleSearch"
           class="btn-toggle-search"
@@ -118,6 +127,11 @@ watch(
     <div v-if="isOpenNavMenu">
       <nav flex-1 class="menu-navigation" p-5 flex flex-col text-2xl>
         <ul w-full flex flex-col gap-3 items-center justify-center>
+          <li w-18 h-auto>
+            <nuxt-link to="/" class="block">
+              <img src="/images/favicon-t.png" alt="logo" />
+            </nuxt-link>
+          </li>
           <li v-for="m in menuNavigation" :key="m">
             <!-- <nuxt-link to="/">{{ m }}</nuxt-link> -->
             {{ m }}
@@ -127,11 +141,11 @@ watch(
     </div>
 
     <!-- Full Screen Search -->
-    <div v-if="isOpenSearch">
+    <div v-if="isOpenSearch" mx-6>
       <form class="search-form">
-        <input type="search" value="" placeholder="Search..." />
-        <button type="button"><div i-carbon:microphone /></button>
-        <button type="button"><div i-carbon:search /></button>
+        <input type="search" value="" placeholder="Search..." text-4xl w-full />
+        <button type="button"><div i-carbon:microphone text-2xl /></button>
+        <button type="button"><div i-carbon:search text-2xl /></button>
       </form>
     </div>
   </div>
@@ -269,12 +283,24 @@ a:hover {
 }
 .search-form > input {
   background-color: transparent;
-  border-bottom: 2px solid white;
-  font-size: 3.5em;
-  color: white;
+  border-bottom: 3.5px solid;
+  padding: 0.2em;
 }
-.search-form > button {
-  font-size: 2em;
+
+.search-form > input::placeholder {
   color: white;
+  opacity: 1; /* Firefox */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-60 {
+  animation: spin 60s linear infinite;
 }
 </style>
