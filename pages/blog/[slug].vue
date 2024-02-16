@@ -66,7 +66,7 @@ useHead({
           <div i-carbon:arrow-left />
           Back to Blog
         </nuxt-link>
-        <h1 p-3 text-4xl font-bold font-courgette>
+        <h1 p-3 text-4xl font-bold font-cursive>
           {{ post.title }}
         </h1>
         <div font-thin>Tags...</div>

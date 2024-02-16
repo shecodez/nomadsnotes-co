@@ -22,6 +22,11 @@ body {
   /* @apply bg-white text-gray-800; */
 }
 
+.router-link-active,
+.router-link-exact-active {
+  color: #ff004f;
+}
+
 /* Page Transitions */
 .page-enter-active,
 .page-leave-active {

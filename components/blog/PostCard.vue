@@ -29,7 +29,7 @@ defineProps(["post"]);
       font-semibold
       leading-6
       text-center
-      font-courgette
+      font-cursive
       line-clamp-2
     >
       {{ post.title }}

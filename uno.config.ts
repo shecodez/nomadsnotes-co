@@ -29,7 +29,8 @@ export default defineConfig({
         mono: ["Fira Code", "Fira Mono:400,700"],
         // custom fonts
         majorMono: "Major Mono Display",
-        courgette: "Courgette",
+        cursive: "Comforter", // "Fuggles"
+        //statement: "",
       },
     }), // https://unocss.dev/presets/web-fonts
   ],
