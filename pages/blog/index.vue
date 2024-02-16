@@ -15,7 +15,7 @@ useHead({
   <nuxt-layout name="list">
     <template #title>
       <div bg-black text-white h-48 flex flex-col items-center justify-center>
-        <h1 text-3xl mb-2><span class="font-majorMono">NONOCO</span> DigiJo</h1>
+        <h1 text-3xl mb-2><span class="font-brand">NONOCO</span> DigiJo</h1>
         <p>thoughts and reflections 🙏</p>
       </div>
     </template>

@@ -28,9 +28,9 @@ export default defineConfig({
         sans: "Roboto",
         mono: ["Fira Code", "Fira Mono:400,700"],
         // custom fonts
-        majorMono: "Major Mono Display",
+        brand: "Major Mono Display",
         cursive: "Comforter", // "Fuggles"
-        //statement: "",
+        statement: "Fredericka the Great",
       },
     }), // https://unocss.dev/presets/web-fonts
   ],

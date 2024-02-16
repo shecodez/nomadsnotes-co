@@ -4,16 +4,16 @@ const config = useRuntimeConfig();
 const categories = [
   "Flight",
   "Accommodation",
-  "Public transit",
+  "Passage",
   "Food",
   "Adventure",
   "Photography",
 ];
 const menuNavigation = [
   "About",
-  "WTH",
-  "Stationary",
+  "WTF",
   "Portfolio",
+  "Hobby",
   "Notes",
   "Contact",
 ];
@@ -59,23 +59,23 @@ watch(isOpenSearch, (isOpen, _) => {
       v-if="!isOpenNavMenu && !isOpenSearch"
       class="header-bg absolute inset-0 h-full z--1"
     />
-    <div flex-1 py-4 px-8 class="fx-2-ic">
-      <div flex-1 w-0 relative>
-        <nuxt-link to="/" class="block w-32 absolute top-0">
-          <img src="/images/categories_logo_only-t.png" alt="logo" absolute />
+    <div p-4 class="fx-2-ic">
+      <div max-w-12>
+        <nuxt-link to="/" class="inline-block relative">
+          <img src="/images/categories_logo_only-t.png" alt="logo" />
           <img
             src="/images/categories_only-t.png"
             alt="logo"
-            class="absolute animate-spin-60"
+            class="absolute animate-spin-60 top-0"
           />
         </nuxt-link>
         <!-- <div text-xs>{{ categories.join(" · ") }} ·</div> -->
       </div>
 
       <div
-        class="flex gap-2 flex-wrap-reverse items-center justify-center text-2xl"
+        class="w-full flex gap-2 flex-wrap-reverse items-center justify-center"
       >
-        <ul flex gap-2 text-gray-7 class="font-cursive">
+        <ul flex gap-2 text-2xl text-gray-7 class="font-cursive">
           <li v-for="(_, i) in 3" :key="categories[i]">
             {{ categories[i] }}
           </li>
@@ -98,14 +98,14 @@ watch(isOpenSearch, (isOpen, _) => {
         </div>
         <div h-0 flex-basis-full order-1 />
 
-        <ul flex gap-2 text-gray-7 class="font-cursive">
+        <ul flex gap-2 text-2xl text-gray-7 class="font-cursive">
           <li v-for="i in 3" :key="categories[i + 2]">
             {{ categories[i + 2] }}
           </li>
         </ul>
       </div>
 
-      <div flex-1 w-0 flex justify-end>
+      <div min-w-12 flex justify-center>
         <button
           @click="toggleSearch"
           class="btn-toggle-search"
@@ -125,14 +125,18 @@ watch(isOpenSearch, (isOpen, _) => {
   <div v-if="isOpenNavMenu || isOpenSearch" class="overlay" z-2>
     <!-- Full Screen Navigation Menu -->
     <div v-if="isOpenNavMenu">
-      <nav flex-1 class="menu-navigation" p-5 flex flex-col text-2xl>
-        <ul w-full flex flex-col gap-3 items-center justify-center>
-          <li w-18 h-auto>
-            <nuxt-link to="/" class="block">
-              <img src="/images/favicon-t.png" alt="logo" />
+      <nav flex-1 class="menu-navigation" p-5 flex flex-col>
+        <ul w-full flex flex-col gap-2 items-center justify-center>
+          <li w-14 h-auto>
+            <nuxt-link to="/" class="inline-block">
+              <img src="/images/favicon-t.png" alt="logo" w-full />
             </nuxt-link>
           </li>
-          <li v-for="m in menuNavigation" :key="m">
+          <li
+            v-for="m in menuNavigation"
+            :key="m"
+            class="text-3xl font-statement"
+          >
             <!-- <nuxt-link to="/">{{ m }}</nuxt-link> -->
             {{ m }}
           </li>
@@ -152,21 +156,28 @@ watch(isOpenSearch, (isOpen, _) => {
 </template>
 
 <style scoped>
+header {
+  border-left: 1.25rem solid black;
+  border-right: 1.25rem solid black;
+}
+
+img {
+  max-width: unset; /* tailwind.css:355 */
+}
+
 .header-bg {
   backdrop-filter: saturate(180%) blur(20px);
 }
 
-.menu-navigation a {
-  padding: 0.5em;
+.menu-navigation li {
   text-transform: uppercase;
 }
-a:hover {
+.menu-navigation li:hover {
   text-decoration: underline;
 }
 
 .btn-toggle-menu .line {
   position: relative;
-  z-index: 99;
   background-color: black;
   height: 3px;
   width: 45px;
@@ -195,7 +206,7 @@ a:hover {
   background-color: #ff004f;
 }
 .btn-toggle-menu.open .icon .line-center {
-  margin-left: -15px;
+  margin-left: 0;
   transform: rotate(45deg);
   height: 3px;
   width: 45px;
@@ -209,7 +220,6 @@ a:hover {
 
 .btn-toggle-search {
   position: relative;
-  z-index: 99;
 }
 .btn-toggle-search .circle {
   position: relative;
@@ -266,7 +276,7 @@ a:hover {
   position: fixed;
   height: 100vh;
   width: 100vw;
-  border: 1em solid #000;
+  border: 1.25rem solid #000;
   background-color: rgb(0, 0, 0, 0.4);
   backdrop-filter: saturate(180%) blur(20px);
   transition: all 500ms ease-in-out;

@@ -119,7 +119,7 @@ const locationQuery = "https://www.google.com/search?q=atlanta+ga";
     <div px-4 flex flex-col md:flex-row items-center md:justify-between>
       <div flex items-center gap-1>
         &copy; {{ new Date().getFullYear() }}
-        <span class="text-primary font-majorMono">NONOCO</span>&middot;
+        <span class="text-primary font-brand">NONOCO</span>&middot;
         <span hidden md:block>All Rights Reserved.</span>
         <nuxt-link to="/legal/privacy"> Privacy Policy </nuxt-link> |
         <nuxt-link to="/legal/terms"> Terms of Use </nuxt-link>

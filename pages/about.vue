@@ -33,7 +33,7 @@ const socialLinks = [
   <article prose mx-auto my-20>
     <h1 text-center>
       {{ config.public.app.name }}
-      【<span class="text-primary font-majorMono">NONOCO</span>】
+      【<span class="text-primary font-brand">NONOCO</span>】
     </h1>
     <div text-center font-italic flex>
       If you
@@ -134,7 +134,7 @@ const socialLinks = [
       and let the adventures with {{ config.public.app.name }} begin!
     </p>
 
-    <p text-right>―<span class="text-primary font-majorMono">NONOCO</span></p>
+    <p text-right>―<span class="text-primary font-brand">NONOCO</span></p>
   </article>
 </template>
 

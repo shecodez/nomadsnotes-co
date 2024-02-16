@@ -8,8 +8,8 @@ import AdminBar from "~/components/adminBar.vue";
   <div min-h-screen flex flex-col>
     <AdminBar>
       <p>
-        2024 <span class="text-primary font-majorMono relative z-1">NoNo</span>
-        <span ml--1.5 opacity-80 class="font-majorMono">DiGi</span>
+        2024 <span class="text-primary font-brand relative z-1">NoNo</span>
+        <span ml--1.5 opacity-80 class="font-brand">DiGi</span>
         <em> ZenBuJo</em> Yang Edition is live!!
       </p>
     </AdminBar>
@@ -21,4 +21,9 @@ import AdminBar from "~/components/adminBar.vue";
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+main {
+  border-left: 1.25rem solid black;
+  border-right: 1.25rem solid black;
+}
+</style>
