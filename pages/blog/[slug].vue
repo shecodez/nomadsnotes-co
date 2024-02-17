@@ -62,7 +62,7 @@ useHead({
         justify-center
         text-white
       >
-        <nuxt-link to="/blog" class="fx-2-ic">
+        <nuxt-link to="/blog" class="center-flex-2">
           <div i-carbon:arrow-left />
           Back to Blog
         </nuxt-link>
@@ -87,7 +87,7 @@ useHead({
     </article>
 
     <div flex justify-center my-8>
-      <nuxt-link to="/blog" class="fx-2-ic">
+      <nuxt-link to="/blog" class="center-flex-2">
         <div i-carbon:arrow-left />
         Back to Blog
       </nuxt-link>

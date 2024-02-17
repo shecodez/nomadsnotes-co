@@ -59,7 +59,7 @@ watch(isOpenSearch, (isOpen, _) => {
       v-if="!isOpenNavMenu && !isOpenSearch"
       class="header-bg absolute inset-0 h-full z--1"
     />
-    <div p-4 class="fx-2-ic">
+    <div p-4 class="center-flex-2">
       <div max-w-12>
         <nuxt-link to="/" class="inline-block relative">
           <img src="/images/categories_logo_only-t.png" alt="logo" />

@@ -11,7 +11,7 @@ function close() {
 </script>
 
 <template>
-  <button title="Menu" class="fx-2-ic" @click="open">
+  <button title="Menu" class="center-flex-2" @click="open">
     <slot name="menuBtn" />
     <span class="sr-only">Menu</span>
   </button>
