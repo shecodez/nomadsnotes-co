@@ -6,7 +6,7 @@ import AdminBar from "~/components/adminBar.vue";
 
 <template>
   <div min-h-screen flex flex-col>
-    <AdminBar>
+    <AdminBar :closeable="true">
       <p>
         2024 <span class="text-primary font-brand relative z-1">NoNo</span>
         <span ml--1.5 opacity-80 class="font-brand">DiGi</span>
@@ -14,16 +14,9 @@ import AdminBar from "~/components/adminBar.vue";
       </p>
     </AdminBar>
     <PageHeader />
-    <main>
+    <main class="pg-border-x">
       <slot />
     </main>
     <PageFooter />
   </div>
 </template>
-
-<style scoped>
-main {
-  border-left: 1.25rem solid black;
-  border-right: 1.25rem solid black;
-}
-</style>

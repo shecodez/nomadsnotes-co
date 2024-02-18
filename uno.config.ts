@@ -13,6 +13,10 @@ export default defineConfig({
     ["btn", "py-2 px-4 flex items-center justify-center gap-1"],
     ["btn-icon", "aspect-square px-4 h-auto"],
     ["btn-primary", " bg-primary text-white hover:bg-white hover:text-primary"],
+    ["pg-border", "border-black border-20"],
+    ["pg-border-t", "border-t-black border-t-20"],
+    ["pg-border-x", "border-x-black border-x-20"],
+    ["pg-bg-color", "bg-slate-2"],
   ],
   presets: [
     presetUno(), // required

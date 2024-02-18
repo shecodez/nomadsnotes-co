@@ -114,12 +114,12 @@ const socialLinks = [
 
     <h3>Join the NONOCO-working Space</h3>
     <p>
-      Nomad's Notebook .Co isn't just a brand; it's a triving community. Join
-      our adventure seaking collective of co-woofers, meow-sayers, and their
-      human assistants where each page—be it digital or analog—tells a new tale.
-      Engage with us on social media, and share your thoughts, doodles, and
-      stories, let's turn every note into a unique page of our shared nomadic
-      chronicle.
+      Nomad's Notes Co isn't just a brand; it's a space for nomads by nomads.
+      Join our adventure-seeking collective of co-woofers, nya-sayers, and their
+      human assistants where each note —digital or analog— chronicals a new
+      adventure. Engage with us on social media, and share your thoughts,
+      doodles, and stories, let's turn each note into a page of our shared nomad
+      notebook.
     </p>
     <div py-4 flex justify-center gap-4 text-xl text-primary>
       <template v-for="(s, i) in socialLinks" :key="`ats-${i}`">

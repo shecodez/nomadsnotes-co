@@ -54,7 +54,7 @@ watch(isOpenSearch, (isOpen, _) => {
 </script>
 
 <template>
-  <header relative w-full sticky top-0 z-3 border-t-black>
+  <header class="pg-border-x pg-border-t" relative w-full sticky top-0 z-3>
     <div
       v-if="!isOpenNavMenu && !isOpenSearch"
       class="header-bg absolute inset-0 h-full z--1"
@@ -62,7 +62,7 @@ watch(isOpenSearch, (isOpen, _) => {
     <div p-4 class="center-flex-2">
       <div max-w-12>
         <nuxt-link to="/" class="inline-block relative">
-          <img src="/images/categories_logo_only-t.png" alt="logo" />
+          <img src="/images/categories_text_logo_only-t.png" alt="logo" />
           <img
             src="/images/categories_only-t.png"
             alt="logo"
@@ -121,46 +121,48 @@ watch(isOpenSearch, (isOpen, _) => {
       </div>
     </div>
   </header>
+  <teleport to="body">
+    <div v-if="isOpenNavMenu || isOpenSearch" class="overlay pg-border" z-2>
+      <!-- Full Screen Navigation Menu -->
+      <div v-if="isOpenNavMenu">
+        <nav flex-1 class="menu-navigation" p-5 flex flex-col>
+          <ul w-full flex flex-col gap-2 items-center justify-center>
+            <li w-14 h-auto>
+              <nuxt-link to="/" class="inline-block">
+                <img src="/images/favicon-t.png" alt="logo" w-full />
+              </nuxt-link>
+            </li>
+            <li
+              v-for="m in menuNavigation"
+              :key="m"
+              class="text-3xl font-statement"
+            >
+              <!-- <nuxt-link to="/">{{ m }}</nuxt-link> -->
+              {{ m }}
+            </li>
+          </ul>
+        </nav>
+      </div>
 
-  <div v-if="isOpenNavMenu || isOpenSearch" class="overlay" z-2>
-    <!-- Full Screen Navigation Menu -->
-    <div v-if="isOpenNavMenu">
-      <nav flex-1 class="menu-navigation" p-5 flex flex-col>
-        <ul w-full flex flex-col gap-2 items-center justify-center>
-          <li w-14 h-auto>
-            <nuxt-link to="/" class="inline-block">
-              <img src="/images/favicon-t.png" alt="logo" w-full />
-            </nuxt-link>
-          </li>
-          <li
-            v-for="m in menuNavigation"
-            :key="m"
-            class="text-3xl font-statement"
-          >
-            <!-- <nuxt-link to="/">{{ m }}</nuxt-link> -->
-            {{ m }}
-          </li>
-        </ul>
-      </nav>
+      <!-- Full Screen Search -->
+      <div v-if="isOpenSearch" mx-6>
+        <form class="search-form">
+          <input
+            type="search"
+            value=""
+            placeholder="Search..."
+            text-4xl
+            w-full
+          />
+          <button type="button"><div i-carbon:microphone text-2xl /></button>
+          <button type="button"><div i-carbon:search text-2xl /></button>
+        </form>
+      </div>
     </div>
-
-    <!-- Full Screen Search -->
-    <div v-if="isOpenSearch" mx-6>
-      <form class="search-form">
-        <input type="search" value="" placeholder="Search..." text-4xl w-full />
-        <button type="button"><div i-carbon:microphone text-2xl /></button>
-        <button type="button"><div i-carbon:search text-2xl /></button>
-      </form>
-    </div>
-  </div>
+  </teleport>
 </template>
 
 <style scoped>
-header {
-  border-left: 1.25rem solid black;
-  border-right: 1.25rem solid black;
-}
-
 img {
   max-width: unset; /* tailwind.css:355 */
 }
@@ -276,7 +278,6 @@ img {
   position: fixed;
   height: 100vh;
   width: 100vw;
-  border: 1.25rem solid #000;
   background-color: rgb(0, 0, 0, 0.4);
   backdrop-filter: saturate(180%) blur(20px);
   transition: all 500ms ease-in-out;

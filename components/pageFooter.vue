@@ -36,7 +36,7 @@ const locationQuery = "https://www.google.com/search?q=atlanta+ga";
 </script>
 
 <template>
-  <footer mt-auto p-5 bg-black text-white>
+  <footer class="pg-border" mt-auto bg-black text-white>
     <div grid grid-cols-1 lg:grid-cols-3 border-2 text-center>
       <div p-2 border-b-2 lg:col-span-3>
         <p py-4 text-sm max-w-md mx-auto>

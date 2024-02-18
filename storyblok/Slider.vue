@@ -1,83 +1,59 @@
 <script setup lang="ts">
-import type { Slide } from "@/storyblok/Slide.vue";
+import type { Slider } from "@/storyblok/types";
 
-type Slider = {
-  _uid: string;
-  slides: Slide[];
-};
-
-const props = defineProps<{
+defineProps<{
   blok: Slider;
 }>();
 
-const timer = ref();
-const currentIdx = ref(0);
-
-function next() {
-  currentIdx.value += 1;
-}
-function prev() {
-  currentIdx.value -= 1;
-}
-
-function setSlideIdx(i: number) {
-  currentIdx.value = i;
-}
-
-function startSlider() {
-  timer.value = setInterval(next, 9000);
-}
-
-onMounted(() => startSlider());
-
-const currentSlideIdx = computed(
-  () => Math.abs(currentIdx.value) % props.blok.slides.length
-);
-const currentSlide = computed(() => props.blok.slides[currentSlideIdx.value]);
+const sliderInputEl = ref(null as Element | null);
 </script>
 
 <template>
-  <div class="slider" relative flex items-center justify-center gap-2>
-    <transition-group name="fade" tag="div" class="w-full">
-      <div v-editable="blok">
-        <StoryblokComponent :blok="currentSlide" />
-      </div>
-    </transition-group>
+  <div class="img-comparison-slider" relative w-full>
+    <div v-editable="blok" class="img-container">
+      <StoryblokComponent
+        v-for="blok in blok.slides"
+        :key="blok._uid"
+        :blok="blok"
+      />
+    </div>
 
-    <button @click="prev" text-primary absolute left-0>
-      <div i-carbon:chevron-left text-4xl />
-    </button>
-    <button @click="next" text-primary absolute right-0>
-      <div i-carbon:chevron-right text-4xl />
-    </button>
-
-    <div absolute bottom-5 inset-x-0 flex items-center justify-center gap-2>
-      <template v-for="(_, i) in blok?.slides.length" :key="`dot-${i}`">
-        <button
-          class="w-2 h-2 rounded-full bg-primary hover:bg-opacity-100"
-          :class="currentSlideIdx === i ? 'bg-opacity-100' : 'bg-opacity-40'"
-          @click="setSlideIdx(i)"
-        />
-      </template>
+    <input ref="sliderInputEl" type="range" min="1" max="100" value="50" />
+    <div class="centered-axis-x inset-y-0 text-white flex gap-2">
+      <div i-carbon:chevron-left self-center />
+      <hr border-l-1 border-white h-full />
+      <div i-carbon:chevron-right self-center />
     </div>
   </div>
 </template>
 
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.9s ease;
-  overflow: hidden;
-  visibility: visible;
+<style>
+.centered-axis-x {
   position: absolute;
-  width: 100%;
-  opacity: 1;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.fade-enter,
-.fade-leave-to {
-  visibility: hidden;
+.img-comparison-slider .img-container {
+  position: relative;
+  overflow: hidden;
+}
+.img-comparison-slider .img-container .slide:nth-child(2) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 50%;
+}
+
+.img-comparison-slider input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  appearance: none;
+  display: none;
   width: 100%;
-  opacity: 0;
+  height: 100%;
 }
 </style>
