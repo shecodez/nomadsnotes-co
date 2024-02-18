@@ -9,6 +9,7 @@ import {
 
 export default defineConfig({
   shortcuts: [
+    ["center", "flex items-center justify-center"],
     ["center-flex-2", "flex gap-2 items-center"],
     ["btn", "py-2 px-4 flex items-center justify-center gap-1"],
     ["btn-icon", "aspect-square px-4 h-auto"],

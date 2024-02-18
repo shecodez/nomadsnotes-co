@@ -8,11 +8,11 @@ defineProps<{
 
 <template>
   <div class="slide" v-editable="blok">
-    <figure relative w-full min-h-42 class="pg-bg-color">
-      <img
+    <figure relative w-full min-h-82 class="pg-bg-color">
+      <div
         v-if="blok.image.id"
-        :src="blok.image.filename"
-        :alt="blok.image.alt"
+        :style="{ backgroundImage: `url(${blok.image.filename})` }"
+        class="img"
       />
       <span
         v-if="blok.image.copyright"
@@ -36,4 +36,13 @@ defineProps<{
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: auto 100%;
+}
+</style>
