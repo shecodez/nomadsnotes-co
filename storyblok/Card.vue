@@ -10,22 +10,22 @@ defineProps<{
 <template>
   <div v-editable="blok">
     <div relative>
-      <div v-if="blok.slider">
+      <div>
         <StoryblokComponent
           v-for="blok in blok.slider"
           :key="blok._uid"
           :blok="blok"
         />
       </div>
-      <figure v-else w-full h-82 border-1 border-primary>
-        <img
+      <figure w-full h-auto border-1>
+        <nuxt-img
           v-if="blok.image.id"
           :src="blok.image.filename"
           :alt="blok.image.alt"
         />
       </figure>
 
-      <div text-justify absolute left-4 bottom-3>
+      <div text-justify absolute left-4 bottom-3 text-white text-shadow>
         <div flex gap-1 text-lg class="font-cursive">
           <h3>{{ blok.category }}</h3>
           —

@@ -16,7 +16,7 @@ defineProps<{
       />
       <span
         v-if="blok.image.copyright"
-        class="absolute bottom-2 right-2 text-xs text-white font-thin"
+        class="absolute bottom-1 right-2 text-xs text-white font-thin"
       >
         © {{ blok.image.copyright }}
       </span>

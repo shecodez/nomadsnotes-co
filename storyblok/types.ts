@@ -11,6 +11,11 @@ export type BlokAsset = {
   copyright: string;
 };
 
+export type InstagramFeed = {
+  _uid: string;
+  username: string;
+};
+
 export type Slide = {
   _uid: string;
   title: string;
