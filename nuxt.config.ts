@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/robots",
     "@storyblok/nuxt",
+    "@pinia/nuxt",
   ],
   // image: {
   //   domains: ["cloudinary.com"],
@@ -41,4 +42,7 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   css: ["@unocss/reset/tailwind.css"],
+  experimental: {
+    renderJsonPayloads: false,
+  },
 });

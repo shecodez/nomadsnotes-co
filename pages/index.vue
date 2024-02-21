@@ -7,37 +7,6 @@ const story = await useAsyncStoryblok(
   { customParent: "https://app.storyblok.com" }
 );
 
-type InstagramPost = {
-  id: string;
-  url: string;
-  caption: string;
-};
-
-const state = reactive({
-  loading: false,
-  instagramFeed: [] as InstagramPost[],
-  error: "",
-});
-
-// async function getInstagramFeed() {
-//   state.loading = true;
-
-//   try {
-//     const response = await fetch("/.netlify/functions/instagram-api");
-
-//     // Throw an error if the response was not successful
-//     if (!response.ok) throw new Error(response.statusText);
-
-//     state.instagramFeed = await response.json();
-//   } catch (e: any) {
-//     state.error = e;
-//   } finally {
-//     state.loading = false;
-//   }
-// }
-
-//onMounted(() => getInstagramFeed());
-
 useHead({
   title: `${config.public.app.name}`,
 });

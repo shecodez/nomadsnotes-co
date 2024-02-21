@@ -45,7 +45,7 @@ defineProps<{
           </template>
         </ul>
         —
-        <time text-lg>{{ blok.publish_date }}</time>
+        <time text-lg>{{ blok.published_date }}</time>
       </div>
       <a
         :href="blok.link.url"

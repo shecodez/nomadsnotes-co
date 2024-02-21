@@ -11,6 +11,37 @@ export type BlokAsset = {
   copyright: string;
 };
 
+export type BlokTextarea = {
+  id: string;
+};
+
+export type BlokRichtext = {
+  id: string;
+};
+
+export type Note = {
+  _uid: string;
+  image: BlokAsset;
+  title: string;
+  excerpt: BlokTextarea;
+  content: BlokRichtext;
+  author: string;
+  // published_date: date;
+  // isUpdated: boolean;
+};
+
+export type Grid = {
+  _uid: string;
+  css: string;
+  grid_items: BlokAsset;
+};
+
+export type GridItem = {
+  _uid: string;
+  css: string;
+  item: BlokAsset;
+};
+
 export type InstagramFeed = {
   _uid: string;
   username: string;
@@ -49,5 +80,5 @@ export type Card = {
   subtitle: string;
   link: BlokLink;
   tags: string;
-  publish_date: Date;
+  published_date: Date;
 };

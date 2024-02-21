@@ -76,6 +76,8 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 https://www.storyblok.com/faq/how-can-i-utilize-typescript-in-my-storyblok-project
 
+Netlify toml: https://docs.netlify.com/configure-builds/file-based-configuration/#sample-netlify-toml-file
+
 ### Stack
 
 Nuxt
@@ -85,3 +87,4 @@ Formkit
 Formspark
 Botpoision
 Storyblok
+Netlify

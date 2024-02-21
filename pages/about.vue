@@ -112,12 +112,12 @@ const socialLinks = [
       </div>
     </div>
 
-    <h3>Join the NONOCO-working Space</h3>
+    <h3>Join the <span class="text-primary font-brand">NONOCO</span>mmunity</h3>
     <p>
-      Nomad's Notes Co isn't just a brand; it's a space for nomads by nomads.
-      Join our adventure-seeking collective of co-woofers, nya-sayers, and their
-      human assistants where each note —digital or analog— chronicals a new
-      adventure. Engage with us on social media, and share your thoughts,
+      Nomad's Notes Co isn't just a brand; it's a community for nomads by
+      nomads. Join our adventure-seeking collective of co-woofers, nya-sayers,
+      and their human assistants where each note —digital or analog— chronicals
+      a new adventure. Engage with us on social media, and share your thoughts,
       doodles, and stories, let's turn each note into a page of our shared nomad
       notebook.
     </p>

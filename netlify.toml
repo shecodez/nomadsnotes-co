@@ -12,7 +12,10 @@
   to = "/index.html"
   status = 200
 
-[dev]                                          
+[dev]
+  [dev.https]
+    certFile = "localhost.pem"
+    keyFile = "localhost-key.pem"                                          
   framework = "#custom"                                                    
   command = "npm run dev"             
   targetPort = 3000

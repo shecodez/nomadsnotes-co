@@ -2,7 +2,7 @@
 const config = useRuntimeConfig();
 
 const categories = [
-  "Flight",
+  "Funding",
   "Accommodation",
   "Passage",
   "Food",
@@ -13,7 +13,7 @@ const menuNavigation = [
   "About",
   "WTF",
   "Portfolio",
-  "Hobby",
+  "Tries",
   "Notes",
   "Contact",
 ];
@@ -51,10 +51,15 @@ watch(isOpenSearch, (isOpen, _) => {
     if (!isOpenNavMenu.value) bodyEl!.style.overflow = "auto";
   }
 });
+
+const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
 </script>
 
 <template>
-  <header class="pg-border-x pg-border-t" relative w-full sticky top-0 z-3>
+  <header
+    class="pg-border-x relative w-full sticky top-0 z-3"
+    :class="isOpen ? '' : 'pg-border-t'"
+  >
     <div
       v-if="!isOpenNavMenu && !isOpenSearch"
       class="header-bg absolute inset-0 h-full z--1"
@@ -121,45 +126,39 @@ watch(isOpenSearch, (isOpen, _) => {
       </div>
     </div>
   </header>
-  <teleport to="body">
-    <div v-if="isOpenNavMenu || isOpenSearch" class="overlay pg-border" z-2>
-      <!-- Full Screen Navigation Menu -->
-      <div v-if="isOpenNavMenu">
-        <nav flex-1 class="menu-navigation" p-5 flex flex-col>
-          <ul w-full flex flex-col gap-2 items-center justify-center>
-            <li w-14 h-auto>
-              <nuxt-link to="/" class="inline-block">
-                <img src="/images/favicon-t.png" alt="logo" w-full />
-              </nuxt-link>
-            </li>
-            <li
-              v-for="m in menuNavigation"
-              :key="m"
-              class="text-3xl font-statement"
-            >
-              <!-- <nuxt-link to="/">{{ m }}</nuxt-link> -->
-              {{ m }}
-            </li>
-          </ul>
-        </nav>
-      </div>
-
-      <!-- Full Screen Search -->
-      <div v-if="isOpenSearch" mx-6>
-        <form class="search-form">
-          <input
-            type="search"
-            value=""
-            placeholder="Search..."
-            text-4xl
-            w-full
-          />
-          <button type="button"><div i-carbon:microphone text-2xl /></button>
-          <button type="button"><div i-carbon:search text-2xl /></button>
-        </form>
-      </div>
+  <!-- <teleport to="body"> -->
+  <div v-if="isOpen" class="overlay pg-border" z-2>
+    <!-- Full Screen Navigation Menu -->
+    <div v-if="isOpenNavMenu">
+      <nav flex-1 class="menu-navigation" p-5 flex flex-col>
+        <ul w-full flex flex-col gap-2 items-center justify-center>
+          <li w-14 h-auto>
+            <nuxt-link to="/" class="inline-block">
+              <img src="/images/favicon-t.png" alt="logo" w-full />
+            </nuxt-link>
+          </li>
+          <li
+            v-for="m in menuNavigation"
+            :key="m"
+            class="text-3xl font-statement"
+          >
+            <!-- <nuxt-link to="/">{{ m }}</nuxt-link> -->
+            {{ m }}
+          </li>
+        </ul>
+      </nav>
     </div>
-  </teleport>
+
+    <!-- Full Screen Search -->
+    <div v-if="isOpenSearch" mx-6>
+      <form class="search-form">
+        <input type="search" value="" placeholder="Search..." text-4xl w-full />
+        <button type="button"><div i-carbon:microphone text-2xl /></button>
+        <button type="button"><div i-carbon:search text-2xl /></button>
+      </form>
+    </div>
+  </div>
+  <!-- </teleport> -->
 </template>
 
 <style scoped>
