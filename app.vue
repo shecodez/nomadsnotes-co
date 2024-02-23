@@ -22,6 +22,18 @@ body {
   /* @apply bg-white text-gray-800; */
 }
 
+.center-y {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center-x {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .router-link-active,
 .router-link-exact-active {
   color: #ff004f;
