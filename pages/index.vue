@@ -7,9 +7,7 @@ const story = await useAsyncStoryblok(
   { customParent: "https://app.storyblok.com" }
 );
 
-useHead({
-  title: `${config.public.app.name}`,
-});
+useHead({ title: config.public.app.name });
 </script>
 
 <template>

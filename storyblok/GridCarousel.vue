@@ -1,13 +1,19 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import useBreakpoints from "@/composables/useBreakpoints";
+import type { Grid } from "@/storyblok/types";
 
-const items = ref([
-  { id: "fyk", css: "md:col-span-2", card: "1", weight: 2 },
-  { id: "pkh", card: "2", weight: 1 },
-  { id: "dgd", card: "3", weight: 1 },
-  { id: "iib", card: "4", weight: 1 },
-  { id: "ytf", card: "5", weight: 1 },
-]);
+const props = defineProps<{
+  blok: Grid;
+}>();
+
+// const items = ref([
+//   { id: "fyk", css: "md:col-span-2", card: "1", weight: 2 },
+//   { id: "pkh", card: "2", weight: 1 },
+//   { id: "dgd", card: "3", weight: 1 },
+//   { id: "iib", card: "4", weight: 1 },
+//   { id: "ytf", card: "5", weight: 1 },
+// ]);
+const items = ref(props.blok.grid_items);
 
 //const grid = document.querySelector(".grid");
 const gridRef = ref<HTMLUListElement>();
@@ -73,22 +79,25 @@ function prev() {
 </script>
 
 <template>
-  <!-- <storyblok-component v-if="story" :blok="story.content" /> -->
-  <div p-5 relative>
-    <!-- <span absolute top-0 left-0>{{ [weightPerSlide, window_width] }}</span> -->
-    <ul
+  <div v-editable="blok" class="grid-carousel" relative>
+    <div
       ref="gridRef"
       class="grid grid-cols-1 md:grid-cols-3 gap-5 hide-implicit-rows"
     >
-      <template v-for="i in items" :key="i.id">
+      <!-- <template v-for="i in items" :key="i.id">
         <li
           ref="itemRefs"
           :class="`w-full min-h-82 bg-bluegray center ${i.css}`"
         >
           <div text-7xl>{{ i.card }}</div>
         </li>
-      </template>
-    </ul>
+      </template> -->
+      <storyblok-component
+        v-for="item in items"
+        :key="item._uid"
+        :blok="item"
+      />
+    </div>
 
     <button @click="prev" text-primary absolute left-0 class="center-y">
       <div i-carbon:chevron-left text-4xl />

@@ -2,7 +2,7 @@
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  // { label: 'Blog', href: '/blog' },
+  { label: "Notes", href: "/notes" },
   { label: "Contact", href: "/contact" },
   { label: "Legal", href: "/legal/terms" },
   // faq, refund policy, shop
@@ -125,7 +125,7 @@ const locationQuery = "https://www.google.com/search?q=atlanta+ga";
         <nuxt-link to="/legal/terms"> Terms of Use </nuxt-link>
       </div>
 
-      <div flex items-center gap-1>
+      <div flex items-center gap-1 class="font-cursive">
         Made with
         <div class="i-carbon:favorite-filled text-primary" />
         by <a href="https://shecodez.com" target="_blank">shecodez</a> &middot;

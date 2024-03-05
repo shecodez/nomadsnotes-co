@@ -20,13 +20,13 @@ defineProps<{
     />
 
     <div flex flex-col items-center gap-2>
-      <div w-16>
+      <div w-16 v-if="blok.icon.filename">
         <nuxt-img :src="blok.icon.filename" :alt="blok.icon.alt" w-full />
       </div>
       <p font-bold>
         {{ blok.description }}
       </p>
-      <a lowercase text-xs font-bold>read more {{ blok.title }}</a>
+      <a lowercase text-xs font-bold>{{ blok.link_text }}</a>
     </div>
   </div>
 </template>

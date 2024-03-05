@@ -22,6 +22,37 @@ body {
   /* @apply bg-white text-gray-800; */
 }
 
+.prose a {
+  text-decoration: none;
+  padding-left: 4px;
+  padding-right: 4px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.prose a::before {
+  content: "";
+  background: rgba(255, 0, 79, 1);
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 11px;
+  z-index: -1;
+  transition: all 0.1s ease-in-out;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.prose a:hover {
+  text-decoration: none !important;
+}
+
+.prose a:hover::before {
+  bottom: 0;
+  height: 100%;
+}
+
 .center-y {
   position: absolute;
   top: 50%;
@@ -36,7 +67,7 @@ body {
 
 .router-link-active,
 .router-link-exact-active {
-  color: #ff004f;
+  color: rgb(255, 0, 79);
 }
 
 /* Page Transitions */

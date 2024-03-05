@@ -8,18 +8,18 @@ defineProps(["post"]);
       class="feature-image-container relative aspect-[16/9] lg:aspect-square"
     >
       <img
-        :src="post.featureImage.url"
-        :alt="post.featureImage.title"
+        :src="post.cover_image.url"
+        :alt="post.cover_image.alt"
         class="absolute inset-0 h-full w-full bg-gray-50 object-cover"
       />
 
       <div class="overlay" absolute inset-0 h-full w-full bg-black opacity-0 />
       <p class="post-description" text-center text-white opacity-0 z-10>
-        {{ post.description }}
+        {{ post.excerpt }}
       </p>
 
       <div absolute bottom-2 right-2 font-mono text-xs text-yellow>
-        <time :datetime="post.publishDate">{{ post.publishDate }}</time>
+        <time :datetime="post.updated_date">{{ post.updated_date }}</time>
       </div>
     </div>
 

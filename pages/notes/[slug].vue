@@ -44,6 +44,7 @@ useHead({
 
 <template>
   <div>
+    <div>Reading Progress Bar</div>
     <div class="feature-image-container relative aspect-[16/9]">
       <img
         :src="post.featureImage.url"

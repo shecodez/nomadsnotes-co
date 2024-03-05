@@ -1,12 +1,12 @@
 ---
-title: Privacy Policy | Nomad's Notebook .Co【NONOCO】
+title: Privacy Policy | Nomad's Notes .Co【NONOCO】
 ---
 
 # Privacy Policy
 
 **Last updated January 12, 2024**
 
-This privacy policy for Nomads Notebook .Co ("**Company**," "**we**," "**us**," or "**our**"), describes how and why we might collect, store, use, and/or share ("**process**") your information when you use our services ("**Services**"), such as when you:
+This privacy policy for Nomad's Notes .Co【NONOCO】 ("**Company**," "**we**," "**us**," or "**our**"), describes how and why we might collect, store, use, and/or share ("**process**") your information when you use our services ("**Services**"), such as when you:
 
 - Visit our website at [https://nomadsnotebook.co](https://nomadsnotebook.co), or any website of ours that links to this privacy policy
 - Engage with us in other related ways, including any sales, marketing, or events

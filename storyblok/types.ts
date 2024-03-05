@@ -19,6 +19,19 @@ export type BlokRichtext = {
   id: string;
 };
 
+export type SocialAt = {
+  _uid: string;
+  label: string;
+  icon_css: string;
+  link: BlokLink;
+  css: string;
+};
+
+export type NewsletterForm = {
+  _uid: string;
+  bg_text: string;
+};
+
 export type Note = {
   _uid: string;
   image: BlokAsset;
@@ -33,13 +46,17 @@ export type Note = {
 export type Grid = {
   _uid: string;
   css: string;
-  grid_items: BlokAsset;
+  grid_items: any[];
 };
 
 export type GridItem = {
   _uid: string;
   css: string;
   item: BlokAsset;
+  title: string;
+  description: string;
+  link: BlokLink;
+  link_text: String;
 };
 
 export type InstagramFeed = {
@@ -54,31 +71,43 @@ export type Slide = {
   image: BlokAsset;
   link: BlokLink;
   hide_text: boolean;
+  css: string;
 };
 
-export type Slider = {
+export type ComparisonSlider = {
   _uid: string;
   slides: Slide[];
+  css: string;
 };
 
 export type Feature = {
   _uid: string;
   title: string;
   description: string;
-  content: Card;
+  content: NoteCard;
   icon: BlokAsset;
   subtitle: string;
   link: BlokLink;
+  link_text: string;
 };
 
-export type Card = {
+export type UserCard = {
+  _uid: string;
+  username: string;
+  image: BlokAsset;
+  description: BlokTextarea;
+  social_ats: SocialAt;
+};
+
+export type NoteCard = {
   _uid: string;
   image: BlokAsset;
-  slider: Slider;
-  category: string; // WTF, Hobby, Destinations, Portfilio
+  content_blok: ComparisonSlider;
+  category: string;
   title: string;
   subtitle: string;
   link: BlokLink;
   tags: string;
-  published_date: Date;
+  published_at: Date; // storyblok
+  container_css: string;
 };

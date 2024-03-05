@@ -32,18 +32,23 @@ const currentSlide = computed(() => props.blok.slides[currentSlideIdx.value]);
 </script>
 
 <template>
-  <div class="carousel" relative flex items-center justify-center gap-2>
-    <div w-full>
-      <!-- TODO: transition group must be :key ?? -->
-      <div v-editable="blok">
-        <StoryblokComponent :blok="currentSlide" :key="currentSlide._uid" />
-      </div>
-    </div>
+  <!-- <div class="carousel" relative flex items-center justify-center gap-2> -->
+  <div
+    v-editable="blok"
+    class="carousel relative max-w-[1400px] h-lg w-full m-auto"
+  >
+    <storyblok-component :blok="currentSlide" :key="currentSlide._uid" />
 
-    <button @click="prev" text-primary absolute left-0>
+    <button
+      @click="prev"
+      class="text-primary absolute left-0 top-[50%] translate-x-0 translate-y-[-50%]"
+    >
       <div i-carbon:chevron-left text-4xl />
     </button>
-    <button @click="next" text-primary absolute right-0>
+    <button
+      @click="next"
+      class="text-primary absolute right-0 top-[50%] translate-x-0 translate-y-[-50%]"
+    >
       <div i-carbon:chevron-right text-4xl />
     </button>
 
@@ -59,21 +64,4 @@ const currentSlide = computed(() => props.blok.slides[currentSlideIdx.value]);
   </div>
 </template>
 
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.9s ease;
-  overflow: hidden;
-  visibility: visible;
-  position: absolute;
-  width: 100%;
-  opacity: 1;
-}
-
-.fade-enter,
-.fade-leave-to {
-  visibility: hidden;
-  width: 100%;
-  opacity: 0;
-}
-</style>
+<style scoped></style>

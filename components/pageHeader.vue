@@ -2,21 +2,14 @@
 const config = useRuntimeConfig();
 
 const categories = [
-  "Funding",
+  "Fund$",
   "Accommodation",
   "Passage",
-  "Food",
-  "Adventure",
+  "Fat",
+  "Action",
   "Photography",
 ];
-const menuNavigation = [
-  "About",
-  "WTF",
-  "Portfolio",
-  "Tries",
-  "Notes",
-  "Contact",
-];
+const menuNavigation = ["About", "WTF", "Services", "Notes", "Contact"];
 
 const isOpenNavMenu = ref(false);
 function toggleMenu() {
@@ -64,7 +57,7 @@ const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
       v-if="!isOpenNavMenu && !isOpenSearch"
       class="header-bg absolute inset-0 h-full z--1"
     />
-    <div p-4 class="center-flex-2">
+    <div px-4 class="center-flex-2">
       <div max-w-12>
         <nuxt-link to="/" class="inline-block relative">
           <img src="/images/categories_text_logo_only-t.png" alt="logo" />
@@ -111,18 +104,20 @@ const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
       </div>
 
       <div min-w-12 flex justify-center>
-        <button
-          @click="toggleSearch"
-          class="btn-toggle-search"
-          :class="isOpenSearch ? 'open' : ''"
-          title="search"
-        >
-          <div class="icon">
-            <div class="circle"></div>
-            <div class="handle"></div>
-          </div>
-          <span sr-only>Toggle Search</span>
-        </button>
+        <div w-20 aspect-square class="center">
+          <button
+            @click="toggleSearch"
+            class="btn-toggle-search"
+            :class="isOpenSearch ? 'open' : ''"
+            title="search"
+          >
+            <div class="icon">
+              <div class="circle"></div>
+              <div class="handle"></div>
+            </div>
+            <span sr-only>Toggle Search</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -140,7 +135,7 @@ const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
           <li
             v-for="m in menuNavigation"
             :key="m"
-            class="text-3xl font-statement"
+            class="text-3xl text-white text-shadow font-statement"
           >
             <!-- <nuxt-link to="/">{{ m }}</nuxt-link> -->
             {{ m }}

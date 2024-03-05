@@ -1,31 +1,41 @@
 <script setup lang="ts">
 import { formatDate } from "@/utils";
-import type { Card } from "@/storyblok/types";
+import type { NoteCard } from "@/storyblok/types";
+
+import TagList from "@/components/notes/TagList.vue";
 
 defineProps<{
-  blok: Card;
+  blok: NoteCard;
 }>();
 </script>
 
 <template>
-  <div v-editable="blok">
+  <div v-editable="blok" class="note-card" :class="blok.container_css">
     <div relative>
-      <div>
-        <StoryblokComponent
-          v-for="blok in blok.slider"
-          :key="blok._uid"
-          :blok="blok"
-        />
-      </div>
-      <figure w-full h-auto border-1>
-        <nuxt-img
+      <storyblok-component
+        v-for="blok in blok.content_blok"
+        :key="blok._uid"
+        :blok="blok"
+      />
+
+      <figure
+        v-if="blok.image.filename"
+        class="relative relative max-w-[1400px] h-sm w-full m-auto bg-black"
+      >
+        <div
           v-if="blok.image.id"
-          :src="blok.image.filename"
-          :alt="blok.image.alt"
+          :style="{ backgroundImage: `url(${blok.image.filename})` }"
+          class="img"
         />
+        <span
+          v-if="blok.image.copyright"
+          class="absolute bottom-1 right-2 text-xs text-white font-thin"
+        >
+          © {{ blok.image.copyright }}
+        </span>
       </figure>
 
-      <div text-justify absolute left-4 bottom-3 text-white text-shadow>
+      <div text-left absolute left-4 bottom-3 text-white text-shadow>
         <div flex gap-1 text-lg class="font-cursive">
           <h3>{{ blok.category }}</h3>
           —
@@ -39,13 +49,14 @@ defineProps<{
 
     <div flex flex-col gap-3 text-justify my-3 divide-y divide-black>
       <div>
-        <ul inline-flex items-center gap-1>
+        <!-- <ul inline-flex items-center gap-1>
           <template v-for="t in blok.tags" :key="t">
             <li font-bold text-sm>#{{ t }}</li>
           </template>
-        </ul>
+        </ul> -->
+        <TagList :tags="blok.tags" />
         —
-        <time text-lg>{{ blok.published_date }}</time>
+        <time text-lg>{{ formatDate(blok.published_at) }}</time>
       </div>
       <a
         :href="blok.link.url"
@@ -55,4 +66,20 @@ defineProps<{
       </a>
     </div>
   </div>
+
+  <!-- registers all the classes from storyblok schema -->
+  <div hidden class="md:col-span-2" />
 </template>
+
+<style scoped>
+.img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+</style>

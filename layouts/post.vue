@@ -9,9 +9,11 @@ const config = useRuntimeConfig();
 <template>
   <PageHeader />
   <AdminBar>
-    {{ config.public.app.name }} is reader-supported. When you buy through links
-    on our site, we may earn an affiliate commission.
-    <nuxt-link to="/legal/affiliate" hover:underline> (Learn More) </nuxt-link>
+    Disclosure: This post may contain affiliate links. If you buy something
+    through them, <span class="text-primary font-brand">NONOCO</span> will
+    receive a small commission at no additional cost to you. Thank you for your
+    support. 🥰
+    <nuxt-link to="/legal/disclosure" hover:underline> (Learn More) </nuxt-link>
   </AdminBar>
   <main>
     <slot />
