@@ -5,11 +5,7 @@ const noteContent = computed(() => renderRichText(blok.content));
 
 <template>
   <div v-editable="blok" class="px-4">
-    <StoryblokComponent
-      v-for="blok in blok.title"
-      :key="blok._uid"
-      :blok="blok"
-    />
+    <h1>{{ blok.title }}</h1>
 
     <div prose>
       {{ noteContent }}

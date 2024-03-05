@@ -9,7 +9,7 @@ const categories = [
   "Action",
   "Photography",
 ];
-const menuNavigation = ["About", "WTF", "Services", "Notes", "Contact"];
+const menuNavigation = ["About", "WTF", "Shop", "Notes", "Contact"];
 
 const isOpenNavMenu = ref(false);
 function toggleMenu() {
@@ -73,7 +73,7 @@ const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
       <div
         class="w-full flex gap-2 flex-wrap-reverse items-center justify-center"
       >
-        <ul flex gap-2 text-2xl text-gray-7 class="font-cursive">
+        <ul flex flex-1 justify-end gap-2 text-2xl class="font-cursive">
           <li v-for="(_, i) in 3" :key="categories[i]">
             {{ categories[i] }}
           </li>
@@ -96,7 +96,7 @@ const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
         </div>
         <div h-0 flex-basis-full order-1 />
 
-        <ul flex gap-2 text-2xl text-gray-7 class="font-cursive">
+        <ul flex flex-1 gap-2 text-2xl class="font-cursive">
           <li v-for="i in 3" :key="categories[i + 2]">
             {{ categories[i + 2] }}
           </li>
@@ -104,7 +104,7 @@ const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
       </div>
 
       <div min-w-12 flex justify-center>
-        <div w-20 aspect-square class="center">
+        <div class="center">
           <button
             @click="toggleSearch"
             class="btn-toggle-search"
@@ -175,9 +175,10 @@ img {
 .btn-toggle-menu .line {
   position: relative;
   background-color: black;
-  height: 3px;
-  width: 45px;
-  margin-bottom: 7px;
+  height: 0.25rem;
+  width: 3rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
   transition: all 500ms ease-in-out;
 }
 
@@ -192,6 +193,7 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
+  border-radius: 1rem;
   background-color: #ff004f;
   transition: all 500ms ease-in-out;
 }
@@ -204,8 +206,9 @@ img {
 .btn-toggle-menu.open .icon .line-center {
   margin-left: 0;
   transform: rotate(45deg);
-  height: 3px;
-  width: 45px;
+  height: 0.25rem;
+  width: 3rem;
+  border-radius: 1rem;
 }
 .btn-toggle-menu.open .icon .line-center::after {
   transform: rotate(-90deg);
@@ -237,6 +240,7 @@ img {
   right: 4px;
   height: 35px;
   width: 3.5px;
+  border-radius: 1rem;
   transform: rotate(-45deg);
 }
 .btn-toggle-search .handle:after {

@@ -13,9 +13,9 @@ defineProps<{
   <div v-editable="blok" class="note-card" :class="blok.container_css">
     <div relative>
       <storyblok-component
-        v-for="blok in blok.content_blok"
-        :key="blok._uid"
-        :blok="blok"
+        v-for="b in blok.content_blok"
+        :key="b._uid"
+        :blok="b"
       />
 
       <figure

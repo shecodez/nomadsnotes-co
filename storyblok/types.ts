@@ -32,6 +32,7 @@ export type NewsletterForm = {
   bg_text: string;
 };
 
+// page
 export type Note = {
   _uid: string;
   image: BlokAsset;
@@ -72,11 +73,24 @@ export type Slide = {
   link: BlokLink;
   hide_text: boolean;
   css: string;
+  weight: number;
 };
 
 export type ComparisonSlider = {
   _uid: string;
   slides: Slide[];
+  //image_left: BlokAsset;
+  //image_right: BlokAsset;
+  css: string;
+};
+
+export type Carousel = {
+  _uid: string;
+  slides: Slide[];
+  items_per_slide: number;
+  weight_per_slide: number;
+  height: string; // i.e 24rem
+  autoplay: boolean;
   css: string;
 };
 
@@ -89,6 +103,7 @@ export type Feature = {
   subtitle: string;
   link: BlokLink;
   link_text: string;
+  css: string;
 };
 
 export type UserCard = {

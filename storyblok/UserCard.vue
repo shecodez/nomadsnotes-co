@@ -22,10 +22,6 @@ defineProps<{
 
     <p my-2>{{ blok.description }}</p>
 
-    <StoryblokComponent
-      v-for="blok in blok.social_ats"
-      :key="blok._uid"
-      :blok="blok"
-    />
+    <storyblok-component v-for="b in blok.social_ats" :key="b._uid" :blok="b" />
   </div>
 </template>

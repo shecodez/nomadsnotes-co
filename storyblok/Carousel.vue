@@ -1,67 +1,113 @@
 <script setup lang="ts">
-import type { Slider } from "@/storyblok/types";
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/vue-splide";
+import type { Carousel } from "@/storyblok/types";
 
 const props = defineProps<{
-  blok: Slider;
+  blok: Carousel;
 }>();
 
-const timer = ref();
-const currentIdx = ref(0);
+const splideRef = ref();
 
-function next() {
-  currentIdx.value += 1;
-}
-function prev() {
-  currentIdx.value -= 1;
-}
+// onMounted(() => {
+//   if (splideRef.value && splideRef.value.splide) {
+//     console.log(splideRef.value.splide.length);
+//   }
+// });
 
-function setSlideIdx(i: number) {
-  currentIdx.value = i;
-}
-
-function startSlider() {
-  timer.value = setInterval(next, 9000);
-}
-
-onMounted(() => startSlider());
-
-const currentSlideIdx = computed(
-  () => Math.abs(currentIdx.value) % props.blok.slides.length
-);
-const currentSlide = computed(() => props.blok.slides[currentSlideIdx.value]);
+const splideOptions = ref({
+  type: "slide",
+  cover: true,
+  rewind: true,
+  perPage: props.blok.items_per_slide || 1,
+  pagination: true,
+  classes: {
+    pagination: "splide__pagination",
+    page: "splide__pagination__page pagination-btn",
+  },
+  gap: "1rem",
+  height: props.blok.height,
+  autoPlay: props.blok.autoplay,
+  animationDuration: 1000,
+  // Splide uses max-width(desktop-first)
+  breakpoints: {
+    // < 768px
+    768: {
+      //height: "70vh",
+      perPage: 1,
+    },
+  },
+});
 </script>
 
 <template>
-  <!-- <div class="carousel" relative flex items-center justify-center gap-2> -->
-  <div
-    v-editable="blok"
-    class="carousel relative max-w-[1400px] h-lg w-full m-auto"
-  >
-    <storyblok-component :blok="currentSlide" :key="currentSlide._uid" />
+  <div v-editable="blok" class="splide-carousel">
+    <div ref="splideRef" class="relative">
+      <splide :options="splideOptions" :has-track="false">
+        <splide-track>
+          <splide-slide v-for="b in blok.slides" :key="b._uid">
+            <storyblok-component :blok="b" />
+          </splide-slide>
+        </splide-track>
 
-    <button
-      @click="prev"
-      class="text-primary absolute left-0 top-[50%] translate-x-0 translate-y-[-50%]"
-    >
-      <div i-carbon:chevron-left text-4xl />
-    </button>
-    <button
-      @click="next"
-      class="text-primary absolute right-0 top-[50%] translate-x-0 translate-y-[-50%]"
-    >
-      <div i-carbon:chevron-right text-4xl />
-    </button>
+        <div class="splide__arrows text-primary">
+          <button class="splide__arrow splide__arrow--prev">
+            <div i-carbon:chevron-left text-4xl />
+          </button>
+          <button class="splide__arrow splide__arrow--next">
+            <div i-carbon:chevron-right text-4xl />
+          </button>
+        </div>
 
-    <div absolute bottom-5 inset-x-0 flex items-center justify-center gap-2>
-      <template v-for="(_, i) in blok?.slides.length" :key="`dot-${i}`">
-        <button
-          class="w-2 h-2 rounded-full bg-primary hover:bg-opacity-100"
-          :class="currentSlideIdx === i ? 'bg-opacity-100' : 'bg-opacity-40'"
-          @click="setSlideIdx(i)"
-        />
-      </template>
+        <ul class="splide__pagination pagination-track"></ul>
+      </splide>
     </div>
   </div>
+
+  <!-- registers all the classes from storyblok schema -->
+  <div hidden class="bg-center bg-cover" />
 </template>
 
-<style scoped></style>
+<style>
+.splide-carousel .img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.splide__arrows {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+.splide__arrow--prev {
+  left: 0;
+  position: inherit !important;
+  transform: inherit !important;
+}
+.splide__arrow--next {
+  right: 0;
+  position: inherit !important;
+}
+
+.pagination-track {
+  position: absolute;
+  top: 1.25rem;
+  left: -1rem;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pagination-btn {
+  display: block;
+  height: 0.25rem;
+  border-radius: 1rem;
+  content: "";
+  width: 1rem;
+  background-color: rgb(255 0 79 / 0.5);
+}
+.pagination-btn.is-active {
+  width: 2rem;
+  background-color: rgb(255 0 79 / 1);
+}
+</style>

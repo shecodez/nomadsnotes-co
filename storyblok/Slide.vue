@@ -11,7 +11,7 @@ defineProps<{
     <figure v-if="blok.image.filename" relative w-full h-full bg-black>
       <div
         :style="{ backgroundImage: `url(${blok.image.filename})` }"
-        class="img w-full h-full duration-500"
+        class="w-full h-full transition-500"
         :class="blok.css"
       />
       <span
@@ -36,12 +36,22 @@ defineProps<{
 </template>
 
 <style scoped>
-.img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: auto 100%;
+.spacing-animation {
+  animation: in 3s ease-out forwards infinite;
+  animation-delay: 3600s;
+}
+@keyframes in {
+  0% {
+    letter-spacing: -17px;
+    opacity: 0;
+  }
+  30% {
+    letter-spacing: 4px;
+    opacity: 1;
+  }
+  100% {
+    letter-spacing: 4px;
+    opacity: 1;
+  }
 }
 </style>

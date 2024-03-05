@@ -9,8 +9,10 @@ const slider = ref(50);
 watch(slider, (val, _) => {
   const slideDiv = document.querySelector(
     ".comparison-slider .img-container .slide:nth-child(2)"
-  );
-  const slideDividerEl = document.querySelector(".slide-divider");
+  ) as HTMLElement;
+  const slideDividerEl = document.querySelector(
+    ".slide-divider"
+  ) as HTMLElement;
 
   slideDiv!.style.width = `${val}%`;
   slideDividerEl!.style.left = `${val}%`;
@@ -31,11 +33,7 @@ function calcMousePos(e: MouseEvent) {
     class="comparison-slider relative max-w-[1400px] h-sm w-full m-auto"
   >
     <div class="img-container">
-      <storyblok-component
-        v-for="blok in blok.slides"
-        :key="blok._uid"
-        :blok="blok"
-      />
+      <storyblok-component v-for="b in blok.slides" :key="b._uid" :blok="b" />
     </div>
 
     <div class="slide-divider center-x" inset-y-0 text-white flex gap-2>

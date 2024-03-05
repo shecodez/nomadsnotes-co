@@ -19,7 +19,9 @@ const socialIcons = [
 </script>
 
 <template>
-  <div class="social-links z-20 right-4 text-primary">
+  <div
+    class="social-links z-20 right-5 text-primary border-1 border-transparent"
+  >
     <ul flex flex-col justify-center gap-6>
       <li v-for="(n, i) in socialIcons" :key="n.label">
         <a

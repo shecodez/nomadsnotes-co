@@ -1,23 +1,16 @@
 <script setup lang="ts">
 import useBreakpoints from "@/composables/useBreakpoints";
-import type { Grid } from "@/storyblok/types";
+import type { Carousel } from "@/storyblok/types";
 
 const props = defineProps<{
-  blok: Grid;
+  blok: Carousel;
 }>();
 
-// const items = ref([
-//   { id: "fyk", css: "md:col-span-2", card: "1", weight: 2 },
-//   { id: "pkh", card: "2", weight: 1 },
-//   { id: "dgd", card: "3", weight: 1 },
-//   { id: "iib", card: "4", weight: 1 },
-//   { id: "ytf", card: "5", weight: 1 },
-// ]);
-const items = ref(props.blok.grid_items);
+const items = ref(props.blok.slides);
 
 //const grid = document.querySelector(".grid");
 const gridRef = ref<HTMLUListElement>();
-const itemRefs = ref<HTMLLIElement[]>([]);
+//const itemRefs = ref<HTMLLIElement[]>([]);
 const weightPerSlide = ref(1);
 
 const { window_width, screen_size } = useBreakpoints();
@@ -38,7 +31,7 @@ function move(direction?: string) {
   const n = items.value.length;
   let w = 0;
 
-  // Based on the direction we add/remove class 'hidden'
+  // TODO: based on the direction add/remove class 'hidden'
   if (direction === "right") {
     let i = 0;
     while (w < weightPerSlide.value) {
@@ -84,14 +77,6 @@ function prev() {
       ref="gridRef"
       class="grid grid-cols-1 md:grid-cols-3 gap-5 hide-implicit-rows"
     >
-      <!-- <template v-for="i in items" :key="i.id">
-        <li
-          ref="itemRefs"
-          :class="`w-full min-h-82 bg-bluegray center ${i.css}`"
-        >
-          <div text-7xl>{{ i.card }}</div>
-        </li>
-      </template> -->
       <storyblok-component
         v-for="item in items"
         :key="item._uid"
