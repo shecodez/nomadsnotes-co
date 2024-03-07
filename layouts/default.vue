@@ -20,11 +20,6 @@ import SocialLinks from "~/components/SocialLinks.vue";
     </main>
     <PageFooter />
   </div>
-  <!-- <div right-6 flex flex-col gap-2 class="fixed-center-y" text-lg>
-    <div i-carbon:logo-youtube />
-    <div i-carbon:logo-instagram />
-    <div i-carbon:logo-pinterest />
-  </div> -->
   <SocialLinks />
 </template>
 

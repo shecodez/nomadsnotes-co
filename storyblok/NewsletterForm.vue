@@ -15,8 +15,8 @@ defineProps<{
       xmlns="http://www.w3.org/2000/svg"
       xml:lang="en"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      width="508"
-      height="126"
+      width="500"
+      height="125"
       class="max-w-full"
     >
       <defs>

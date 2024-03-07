@@ -39,16 +39,14 @@ const socialLinks = [
       If you
       <div class="i-carbon:favorite-filled text-primary" />
       stationary, but not being stationary. <br />Hi friend 👋 Welcome to
-      Nomad's Notebook Company!
+      Nomad's Notes!
     </div>
 
     <h3>Q: analog or Digital Notes? A: Yes!</h3>
     <p>
-      We get it, you've got places to be, sites to see, and stationary to
-      collect. Our shop is full of traditional charm and modern functionality,
-      tailored for those embracing a minimalist nomad lifestyle. Our goal is
-      simple: strike the perfect balance of analog delight and digital
-      convenience.
+      We get it, you've got places to be, and sites to see. We write notes on
+      achieving a minimalist nomadic lifestyle. Our goal is simple: make
+      nomad-ing easier.
     </p>
 
     <h3 flex gap-1>
@@ -62,14 +60,14 @@ const socialLinks = [
     </h3>
     <p>
       Whether navigating through lively city streets or unwinding in serene
-      countryside, our products are there for every adventure. Be it physical
+      countryside, our notebooks are there for every adventure. Be it physical
       endurance or digital convenience, our goods are versatile and prepared for
       any scenario. Nomad's Notebooks are meticulously crafted to seamlessly
       integrate into your on-the-go lifestyle, ensuring that your notes journey
       just as far as you do!
     </p>
 
-    <h3>Meet the NONOCO-workers</h3>
+    <h3>Meet the <span class="text-primary font-brand">NONOCO</span>workers</h3>
 
     <div flex gap-3 items-center mb-4>
       <img src="/images/kai.jpg" alt="Kai" class="w-42 h-auto object-cover" />
@@ -114,7 +112,7 @@ const socialLinks = [
 
     <h3>Join the <span class="text-primary font-brand">NONOCO</span>mmunity</h3>
     <p>
-      Nomad's Notes Co isn't just a brand; it's a community for nomads by
+      Nomad's Notes .Co isn't just a brand; it's a NONOCO-mmunity for nomads by
       nomads. Join our adventure-seeking collective of co-woofers, nya-sayers,
       and their human assistants where each note —digital or analog— chronicals
       a new adventure. Engage with us on social media, and share your thoughts,

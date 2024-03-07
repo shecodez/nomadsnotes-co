@@ -49,13 +49,15 @@ const splideOptions = ref({
           </splide-slide>
         </splide-track>
 
-        <div class="splide__arrows text-primary">
-          <button class="splide__arrow splide__arrow--prev">
-            <div i-carbon:chevron-left text-4xl />
-          </button>
-          <button class="splide__arrow splide__arrow--next">
-            <div i-carbon:chevron-right text-4xl />
-          </button>
+        <div w-full class="center-y">
+          <div class="splide__arrows text-primary">
+            <button class="splide__arrow splide__arrow--prev">
+              <div i-carbon:chevron-left text-4xl />
+            </button>
+            <button class="splide__arrow splide__arrow--next">
+              <div i-carbon:chevron-right text-4xl />
+            </button>
+          </div>
         </div>
 
         <ul class="splide__pagination pagination-track"></ul>
@@ -74,20 +76,8 @@ const splideOptions = ref({
 }
 
 .splide__arrows {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
-}
-.splide__arrow--prev {
-  left: 0;
-  position: inherit !important;
-  transform: inherit !important;
-}
-.splide__arrow--next {
-  right: 0;
-  position: inherit !important;
+  display: flex;
+  justify-content: space-between;
 }
 
 .pagination-track {

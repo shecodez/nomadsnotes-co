@@ -1,11 +1,16 @@
 <script lang="ts" setup>
+import TagList from "~/components/notes/TagList.vue";
+import TableOfContents from "~/components/TableOfContent.vue";
+
 definePageMeta({
   layout: "post",
 });
 
 const route = useRoute();
 
-const post = await queryContent("/blog").where({ _path: route.path }).findOne();
+const post = await queryContent("/notes")
+  .where({ _path: route.path })
+  .findOne();
 
 // const { data: post } = await useAsyncData("post", () =>
 //   queryContent("/blog").where({ _path: route.path }).findOne()
@@ -36,61 +41,75 @@ useHead({
     {
       hid: "og:image",
       property: "og:image",
-      content: `${runtimeConfig.public.app.url}${post?.featureImage.url}`,
+      content: `${runtimeConfig.public.app.url}${post?.cover_image.url}`,
     },
   ],
 });
 </script>
 
 <template>
-  <div>
-    <div>Reading Progress Bar</div>
-    <div class="feature-image-container relative aspect-[16/9]">
-      <img
-        :src="post.featureImage.url"
-        :alt="post.featureImage.title"
-        class="absolute inset-0 h-full w-full bg-gray-50 object-cover"
-      />
+  <div class="note-page">
+    <div class="pg-bg-color mx-10 p-10 center flex-col gap-4">
+      <div class="font-cursive text-4xl text-primary">note.category</div>
+      <h1 class="text-7xl font-statement">{{ post.title }}</h1>
+      <hr w-24 border-t-1 border-t-primary pb-3 />
 
-      <div class="overlay" absolute inset-0 h-full w-full bg-black opacity-0 />
-
-      <div
-        absolute
-        inset-0
-        flex
-        flex-col
-        items-center
-        justify-center
-        text-white
-      >
-        <nuxt-link to="/blog" class="center-flex-2">
-          <div i-carbon:arrow-left />
-          Back to Blog
-        </nuxt-link>
-        <h1 p-3 text-4xl font-bold font-cursive>
-          {{ post.title }}
-        </h1>
-        <div font-thin>Tags...</div>
-      </div>
-
-      <div absolute bottom-2 right-2 font-mono text-yellow>
-        <time :datetime="post.publishDate">{{ post.publishDate }}</time>
+      <p class="font-thin text-2xl mb-4">{{ post.description }}</p>
+      <div class="h-16 center gap-2">
+        <img :src="post.author.image.url" w-full h-full rounded-full />
+        <p text-primary font-cursive text-3xl>@{{ post.author.at }}</p>
       </div>
     </div>
 
-    <article mx-auto prose first-letter:text-3xl>
-      <content-renderer :value="post">
-        <template #empty>
-          <p>No content found.</p>
-        </template>
-      </content-renderer>
-      <div w-full border-b py-4 />
-    </article>
+    <div class="cover-image-container relative aspect-[16/9] mx-10">
+      <img
+        :src="post.cover_image.url"
+        :alt="post.cover_image.alt"
+        class="absolute inset-0 h-full w-full bg-gray-50 object-cover"
+      />
+      <div class="overlay" absolute inset-0 h-full w-full bg-black opacity-0 />
 
-    <div flex justify-center my-8>
-      <nuxt-link to="/blog" class="center-flex-2">
+      <div absolute bottom-2 right-2 font-mono text-yellow>
+        <time :datetime="post.published_at">{{ post.published_at }}</time>
+      </div>
+    </div>
+
+    <div class="pg-bg-color mx-10 px-10 pb-10 flex flex-col gap-10">
+      <div flex gap-5>
+        <div
+          v-if="!!post.body?.toc?.links.length"
+          class="w-60 hidden md:block mt-10"
+        >
+          <div sticky top-40>
+            <TableOfContents :links="post.body?.toc?.links" />
+          </div>
+        </div>
+
+        <article prose first-letter:text-3xl>
+          <content-renderer :value="post">
+            <template #empty>
+              <p>No content found.</p>
+            </template>
+          </content-renderer>
+        </article>
+      </div>
+
+      <div class="border-y-1 border-black py-2">
+        <TagList :tags="post.tags" />
+      </div>
+
+      <div>
+        <h4 text-4xl mb-4>
+          More <span class="text-primary font-cursive">Photography</span> Notes
+        </h4>
+        3 notes carousel on mobile
+      </div>
+    </div>
+
+    <div class="center p-1">
+      <nuxt-link to="/notes" class="btn font-bold text-sm">
         <div i-carbon:arrow-left />
-        Back to Blog
+        back to notes
       </nuxt-link>
     </div>
   </div>
@@ -100,8 +119,8 @@ useHead({
 .overlay {
   transition: 0.5s ease-in-out;
 }
-.feature-image-container:hover .overlay {
-  opacity: 0.8;
+.cover-image-container:hover .overlay {
+  opacity: 0.3;
   backdrop-filter: saturate(180%) blur(20px);
 }
 </style>

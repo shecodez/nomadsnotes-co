@@ -1,5 +1,5 @@
 <script setup>
-import MdOutline from "~/components/MdOutline.vue";
+import TableOfContents from "~/components/TableOfContents.vue";
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import MdOutline from "~/components/MdOutline.vue";
         <template #default="{ doc }">
           <aside v-if="!!doc.body?.toc?.links.length" w-80 hidden md:block>
             <div sticky top-24>
-              <MdOutline :links="doc.body?.toc?.links" />
+              <TableOfContents :links="doc.body?.toc?.links" />
             </div>
           </aside>
 

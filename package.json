@@ -32,6 +32,7 @@
     "@unocss/reset": "^0.57.5",
     "@vueuse/nuxt": "^10.6.1",
     "axios": "^1.6.7",
-    "vue-recaptcha": "3.0.0-alpha.6"
+    "vue-recaptcha": "3.0.0-alpha.6",
+    "vue-use-active-scroll": "^1.1.1"
   }
 }

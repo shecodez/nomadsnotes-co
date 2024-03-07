@@ -89,7 +89,7 @@ useHead({
 
 <template>
   <div id="contact-page" relative flex items-center justify-end>
-    <div id="map-container" absolute inset-0 bg-gray-300>
+    <div id="map-container" absolute inset-0 top--2 bg-gray-300>
       <iframe
         width="100%"
         height="100%"
@@ -104,20 +104,23 @@ useHead({
     </div>
 
     <div
-      mx-4
-      z-10
+      z-1
       p-4
       md:p-8
       bg-white
       shadow-md
       class="md:w-2/3 lg:w-1/2 xl:w-1/3 md:mr-20 lg:mr-40"
     >
-      <h1 text-3xl lg:text-5xl font-bold mb-4>Get in Touch</h1>
-      <p>
+      <h2 text-3xl lg:text-5xl mb-4 class="font-statement">Get in Touch</h2>
+      <h3 class="font-cursive mt--8 text-center text-3xl text-primary">
+        Can't wait to hear from ya!
+      </h3>
+
+      <p font-thin>
         Have a question 🤔? Want to leave some feedback? Report a bug 🐞? et
         cetera. Please fill out the contact form below or feel free to
-        <a href="mailto:contact@nomadsnotebook.co" text-primary hover:underline>
-          contact@nomadsnotebook.co
+        <a href="mailto:contact@nomadsnotes.co" text-primary font-bold>
+          contact@nomadsnotes.co
         </a>
         via email. 🥰
       </p>
@@ -133,6 +136,7 @@ useHead({
         <span v-if="state.error">❗ {{ state.error }}</span>
         <span v-else>✔️ Message sent. Thanks!</span>
       </div>
+
       <FormKit
         v-else
         id="contact"
@@ -144,13 +148,14 @@ useHead({
       >
         <FormKitSchema :schema="contactFormJson?.body" :data="state" />
       </FormKit>
-      <!-- registers all the classes from contact.json schema -->
-      <div
-        hidden
-        class="w-full p-3 mt-4 mb-3 ml-auto bg-gray-200 text-red text-xs text-right uppercase flex-1 flex-col gap-3 items-center md:flex-row md:mb-3 bg-primary btn btn-primary"
-      />
     </div>
   </div>
+
+  <!-- registers all the classes from contact.json schema -->
+  <div
+    hidden
+    class="w-full p-3 mt-4 mb-3 ml-auto bg-gray-200 text-red text-xs text-right uppercase flex-1 flex-col gap-3 items-center md:flex-row md:mb-3 bg-primary btn btn-primary sr-only"
+  />
 </template>
 
 <style>

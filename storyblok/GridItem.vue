@@ -16,10 +16,8 @@ defineProps<{
       {{ blok.title }}
     </h3>
 
-    <div w-full>
-      <p>{{ blok.description }}</p>
-      <storyblok-component v-for="b in blok.item" :key="b._uid" :blok="b" />
-    </div>
+    <p>{{ blok.description }}</p>
+    <storyblok-component v-for="b in blok.item" :key="b._uid" :blok="b" />
 
     <a :href="blok.link.url" mt-2 text-xs font-bold hover:underline>
       {{ blok.link_text }}

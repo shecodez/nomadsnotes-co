@@ -35,9 +35,9 @@ export type NewsletterForm = {
 // page
 export type Note = {
   _uid: string;
-  image: BlokAsset;
+  cover_image: BlokAsset;
   title: string;
-  excerpt: BlokTextarea;
+  description: BlokTextarea;
   content: BlokRichtext;
   author: string;
   // published_date: date;
