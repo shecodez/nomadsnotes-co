@@ -1,25 +1,25 @@
 <script lang="ts" setup>
-defineProps(["post"]);
+defineProps(["note"]);
 </script>
 
 <template>
-  <a :href="post._path" grow relative flex flex-col gap-2 shadow-md p-3>
+  <a :href="note._path" grow relative flex flex-col gap-2 shadow-md p-3>
     <div
       class="feature-image-container relative aspect-[16/9] lg:aspect-square"
     >
       <img
-        :src="post.cover_image.url"
-        :alt="post.cover_image.alt"
+        :src="note.cover_image.url"
+        :alt="note.cover_image.alt"
         class="absolute inset-0 h-full w-full bg-gray-50 object-cover"
       />
 
       <div class="overlay" absolute inset-0 h-full w-full bg-black opacity-0 />
-      <p class="post-description" text-center text-white opacity-0 z-10>
-        {{ post.excerpt }}
+      <p class="note-description" text-center text-white opacity-0 z-10>
+        {{ note.description }}
       </p>
 
       <div absolute bottom-2 right-2 font-mono text-xs text-yellow>
-        <time :datetime="post.updated_date">{{ post.updated_date }}</time>
+        <time :datetime="note.updated_date">{{ note.updated_date }}</time>
       </div>
     </div>
 
@@ -32,7 +32,7 @@ defineProps(["post"]);
       font-cursive
       line-clamp-2
     >
-      {{ post.title }}
+      {{ note.title }}
     </h3>
   </a>
 </template>
@@ -45,7 +45,7 @@ defineProps(["post"]);
   opacity: 0.8;
   backdrop-filter: saturate(180%) blur(20px);
 }
-.feature-image-container:hover .post-description {
+.feature-image-container:hover .note-description {
   opacity: 1;
   position: absolute;
   left: 50%;

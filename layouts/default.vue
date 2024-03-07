@@ -1,25 +1,29 @@
 <script setup lang="ts">
-import PageHeader from "~/components/pageHeader.vue";
-import PageFooter from "~/components/pageFooter.vue";
-import AdminBar from "~/components/adminBar.vue";
-import SocialLinks from "~/components/SocialLinks.vue";
+import AppHeader from "@/components/core/AppHeader.vue";
+import AppFooter from "@/components/core/AppFooter.vue";
+import AdminBar from "@/components/ui/AdminBar.vue";
+import SocialLinks from "@/components/core/SocialLinks.vue";
 </script>
 
 <template>
   <div relative min-h-screen flex flex-col>
-    <AdminBar :closeable="true">
+    <!-- <AdminBar :closeable="true">
       <p>
         2024 <span class="text-primary font-brand relative z-1">NoNo</span>
         <span ml--1.5 opacity-80 class="font-brand">DiGi</span>
         <em> ZenBuJo</em> Yang Edition is live!!
       </p>
-    </AdminBar>
-    <PageHeader />
+    </AdminBar> -->
+
+    <AppHeader />
+
     <main class="pg-border-x">
       <slot />
     </main>
-    <PageFooter />
+
+    <AppFooter />
   </div>
+
   <SocialLinks />
 </template>
 
@@ -30,3 +34,4 @@ import SocialLinks from "~/components/SocialLinks.vue";
   transform: translateY(-50%);
 }
 </style>
+@/components/AdminBar.vue

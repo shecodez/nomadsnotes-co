@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Drawer from "./ui/drawer.vue";
+import Drawer from "@/components/ui/Drawer.vue";
 
 const isOpen = ref(false);
 function open() {
@@ -26,3 +26,4 @@ function close() {
 </template>
 
 <style scoped></style>
+./ui/Drawer.vue

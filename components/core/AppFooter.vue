@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import AdminBar from "@/components/ui/AdminBar.vue";
+
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
@@ -17,17 +19,17 @@ const socialLinks = [
   {
     icon: "i-carbon:logo-instagram",
     label: "Instagram",
-    link: "https://www.instagram.com/nomadsnotebookco/",
+    link: "https://www.instagram.com/nomadsnotesco/",
   },
   {
     icon: "i-carbon:logo-youtube",
     label: "YouTube",
-    link: "https://youtube.com/@nomadsnotebookco",
+    link: "https://youtube.com/@nomadsnotesco",
   },
   {
     icon: "i-carbon:logo-pinterest",
     label: "Pinterest",
-    link: "https://www.pinterest.com/nomadsnotebookco/",
+    link: "https://www.pinterest.com/nomadsnotesco/",
   },
 ];
 

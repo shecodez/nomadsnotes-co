@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import SplideDemo from "~/components/SplideDemo.vue";
+import SplideDemo from "@/components/_TBD/TBD_SplideDemo.vue";
 </script>
 
 <template>

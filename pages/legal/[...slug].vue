@@ -1,17 +1,20 @@
 <script setup>
-import TableOfContents from "~/components/TableOfContents.vue";
+import TableOfContents from "@/components/app/TableOfContents.vue";
 </script>
 
 <template>
-  <div container mx-auto py-10>
-    <div flex gap-8>
+  <div class="pg-bg-color mx-10 mb-10 p-10">
+    <div flex gap-10>
       <content-doc>
         <template #default="{ doc }">
-          <aside v-if="!!doc.body?.toc?.links.length" w-80 hidden md:block>
-            <div sticky top-24>
+          <div
+            v-if="!!doc.body?.toc?.links.length"
+            class="w-80 hidden md:block mt-5"
+          >
+            <div sticky top-40>
               <TableOfContents :links="doc.body?.toc?.links" />
             </div>
-          </aside>
+          </div>
 
           <article prose>
             <content-renderer :value="doc">

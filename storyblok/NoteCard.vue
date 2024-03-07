@@ -2,7 +2,7 @@
 import { formatDate } from "@/utils";
 import type { NoteCard } from "@/storyblok/types";
 
-import TagList from "@/components/notes/TagList.vue";
+import TagList from "@/components/ui/TagList.vue";
 
 defineProps<{
   blok: NoteCard;
