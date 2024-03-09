@@ -82,4 +82,21 @@ defineProps<{
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.overlay {
+  transition: 0.5s ease-in-out;
+}
+
+.feature-image-container:hover .overlay {
+  opacity: 0.8;
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+.feature-image-container:hover .note-description {
+  opacity: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 </style>

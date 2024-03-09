@@ -24,6 +24,9 @@ import TableOfContents from "@/components/app/TableOfContents.vue";
             </content-renderer>
           </article>
         </template>
+        <template #not-found>
+          <p>No content found.</p>
+        </template>
       </content-doc>
     </div>
   </div>

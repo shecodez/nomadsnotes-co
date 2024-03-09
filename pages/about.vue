@@ -33,8 +33,7 @@ const socialLinks = [
   <div class="pg-bg-color mx-10 mb-10 py-5 px-10">
     <article prose mx-auto>
       <h1 text-center>
-        {{ config.public.app.name }}
-        【<span class="text-primary font-brand">NONOCO</span>】
+        Nomad's Notes .Co【<span class="text-primary font-brand">NONOCO</span>】
       </h1>
 
       <h3>Q: Analog or Digital Notes? A: Yes!</h3>

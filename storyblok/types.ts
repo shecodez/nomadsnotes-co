@@ -32,6 +32,12 @@ export type NewsletterForm = {
   bg_text: string;
 };
 
+export type Author = {
+  name: string;
+  at_username: string;
+  image: BlokAsset;
+};
+
 // page
 export type Note = {
   _uid: string;
@@ -39,7 +45,7 @@ export type Note = {
   title: string;
   description: BlokTextarea;
   content: BlokRichtext;
-  author: string;
+  author: string; //Author
   // published_date: date;
   // isUpdated: boolean;
 };
@@ -121,7 +127,8 @@ export type NoteCard = {
   category: string;
   title: string;
   subtitle: string;
-  link: BlokLink;
+  author: Author;
+  slug: BlokLink;
   tags: string;
   published_at: Date; // storyblok
   container_css: string;

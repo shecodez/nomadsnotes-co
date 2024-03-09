@@ -79,7 +79,7 @@ const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
           </li>
         </ul>
 
-        <div px-4 mb-2 order-2 lg:order-none>
+        <div px-5 order-2 lg:order-none>
           <button
             @click="toggleMenu"
             class="btn-toggle-menu"

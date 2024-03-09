@@ -39,6 +39,9 @@ export default defineConfig({
     }), // https://unocss.dev/presets/web-fonts
   ],
   theme: {
+    container: {
+      center: true,
+    },
     colors: {
       primary: "#ff004f",
     },

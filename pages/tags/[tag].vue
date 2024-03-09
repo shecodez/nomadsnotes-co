@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import NoteCard from "@/components/ui/Card.vue";
+
 const {
   params: { tag },
 } = useRoute();
 
 //const filter = tag.split(",");
 const q = queryContent("notes")
-  .only(["_path", "title", "description", "date"])
+  .only(["_path", "title", "description", "author", "published_at"])
   .where({ tags: { $contains: tag } })
   // .sort({ date: -1 })
   .find(); // ; <ContentList :query="q">
@@ -32,45 +34,21 @@ useHead({
     </h2>
 
     <div mb-10>
-      <ul v-if="notes?.length" flex items-center justify-center gap-2>
-        <template v-for="(p, i) in notes" :key="`${tag}-post-${i}`">
-          <li>
-            <nuxt-link :to="p._path">
-              <div
-                class="sticky-note max-w-xs shadow-md"
-                style="background-color: rgb(253, 255, 164)"
-              >
-                <div class="relative overflow-hidden">
-                  <div class="note-text p-4 flex flex-col gap-2">
-                    <h3 text-lg font-bold>{{ p.title }}</h3>
-                    <p class="text-sm font-thin">
-                      {{ p.description }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </nuxt-link>
-          </li>
+      <div
+        v-if="notes?.length"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-4"
+      >
+        <template v-for="(note, i) in notes" :key="note.title + i">
+          <NoteCard
+            :slug="note._path"
+            :title="note.title"
+            :description="note.description"
+            :author="note.author"
+            :published_at="note.published_at"
+          />
         </template>
-      </ul>
-
+      </div>
       <div v-else text-center>No notes found</div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.sticky-note {
-  border-bottom-right-radius: 1.5rem;
-}
-.sticky-note .note-text:after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  right: -5px;
-  bottom: -5px;
-  width: 20px;
-  height: 20px;
-  box-shadow: 0 5px 20px #00000080;
-}
-</style>

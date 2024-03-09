@@ -4,9 +4,9 @@ title: Camera Bag 2024
 description: What's in my Camera Bag 2024 | a beginner's photo gear
 author:
   name: Zen G.
-  at: zenithgael
+  at_username: zenithgael
   image:
-    url: /images/zen.jpeg
+    filename: /images/zen.jpeg
 cover_image:
   url: https://images.pexels.com/photos/9149579/pexels-photo-9149579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
   alt: Camera Bag 2024
