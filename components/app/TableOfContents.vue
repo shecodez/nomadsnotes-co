@@ -76,10 +76,6 @@ onMounted(() => (isSSR.value = false));
 </template>
 
 <style>
-:root {
-  --bg-color: rgb(229 231 235);
-  --primary-color: rgb(255 0 79);
-}
 .target {
   scroll-margin-top: 150px; /* account for sticky header */
 }

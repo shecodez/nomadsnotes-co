@@ -5,14 +5,29 @@ const {
   params: { tag },
 } = useRoute();
 
-//const filter = tag.split(",");
-const q = queryContent("notes")
-  .only(["_path", "title", "description", "author", "published_at"])
-  .where({ tags: { $contains: tag } })
-  // .sort({ date: -1 })
-  .find(); // ; <ContentList :query="q">
-const { data: notes } = await useAsyncData("tagged-notes", async () => {
-  return await q;
+// const q = queryContent("notes")
+//   .only(["_path", "title", "description", "author", "published_at"])
+//   .where({ tags: { $contains: tag } })
+//   // .sort({ date: -1 })
+//   .find(); // ; <ContentList :query="q">
+// const { data: notes } = await useAsyncData("tagged-notes", async () => {
+//   return await q;
+// });
+
+const resolveRelations = ["note.author"];
+const { data } = await useStoryblokApi().get("cdn/stories", {
+  starts_with: "notes/",
+  version: import.meta.env.DEV ? "draft" : "published",
+  resolve_relations: resolveRelations,
+  with_tag: tag.toString(),
+});
+const notes = data.stories.map((story) => {
+  const note = {
+    ...story.content,
+    author: story.content.author.content,
+    _path: story.full_slug,
+  };
+  return note;
 });
 
 const config = useRuntimeConfig();
@@ -29,14 +44,15 @@ useHead({
       Back to Tags
     </nuxt-link>
 
-    <h2 class="center mt-5 mb-10 text-5xl font-statement">
-      {{ tag.toString().replace("-", " ") }} notes
-    </h2>
+    <h1 class="center mt-5 mb-10 text-5xl font-statement">
+      {{ notes.length }} note(s) on
+      <span text-primary>&nbsp;#{{ tag.toString().replace("-", " ") }}</span>
+    </h1>
 
     <div mb-10>
       <div
         v-if="notes?.length"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-4"
+        class="mt-4 columns-1 sm:columns-2 lg:columns-3 gap-8"
       >
         <template v-for="(note, i) in notes" :key="note.title + i">
           <NoteCard

@@ -12,6 +12,11 @@ useRecaptchaProvider();
 </template>
 
 <style>
+:root {
+  --bg-color: rgb(229 231 235);
+  --primary-color: rgb(255 0 79);
+}
+
 html {
   scroll-behavior: smooth;
 }

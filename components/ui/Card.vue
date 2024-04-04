@@ -24,7 +24,7 @@ defineProps({
 <template>
   <nuxt-link
     :to="`/${slug}`"
-    class="sticky-note block relative overflow-hidden max-w-xs shadow hover:shadow-lg"
+    class="sticky-note block relative overflow-hidden max-w-xs shadow hover:shadow-lg mb-8"
     style="background-color: rgb(253, 255, 164)"
   >
     <div class="note-wrapper p-5">

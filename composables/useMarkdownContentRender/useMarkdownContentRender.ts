@@ -1,7 +1,7 @@
 // @ts-expect-error avoid lint error
 import markdownParser from "@nuxt/content/transformers/markdown";
 
-export function useContentRenderMarkdown(markdownString: string) {
+export function useMarkdownContentRender(markdownString: string) {
   const record = ref(null);
 
   watch(

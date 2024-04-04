@@ -38,6 +38,11 @@ export type Author = {
   image: BlokAsset;
 };
 
+export type Tag = {
+  name: string;
+  taggings_count: number;
+};
+
 // page
 export type Note = {
   _uid: string;

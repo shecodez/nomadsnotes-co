@@ -1,19 +1,14 @@
 <script lang="ts" setup>
-import useContentRenderMarkdown from "@/composables/useContentRenderMarkdown";
+import useMarkdownContentRender from "@/composables/useMarkdownContentRender";
 
 import TagList from "@/components/ui/TagList.vue";
 import TableOfContents from "@/components/app/TableOfContents.vue";
-import MarkdownStringRenderer from "@/components/app/MarkdownStringRenderer.vue";
 
 definePageMeta({
   layout: "note",
 });
 
 const route = useRoute();
-
-// const note = await queryContent("/notes")
-//   .where({ _path: route.path })
-//   .findOne();
 
 const resolveRelations = ["note.author"];
 const story = await useAsyncStoryblok(
@@ -28,7 +23,7 @@ const note = {
   author: story.value.content.author.content,
 };
 
-const { record } = useContentRenderMarkdown(note.body);
+const { record } = useMarkdownContentRender(note.body);
 
 const tag = story.value.tag_list[0];
 
@@ -58,17 +53,39 @@ useHead({
 
 <template>
   <div class="note-page">
-    <div class="pg-bg-color mx-10 p-10 center flex-col gap-4">
-      <div class="font-cursive text-4xl text-primary">note.category</div>
-      <h1 class="text-7xl font-statement">{{ note.title }}</h1>
+    <div class="pg-bg-color mx-10 p-10 center flex-col gap-4 grid-bg">
+      <div class="font-cursive text-4xl text-primary">{{ tag }}</div>
+      <h1 class="text-7xl font-statement text-center">{{ note.title }}</h1>
       <hr w-24 border-t-1 border-t-primary pb-3 />
 
-      <p class="font-thin text-2xl mb-4 text-center">{{ note.description }}</p>
-      <div class="h-16 center gap-2">
-        <img :src="note.author?.image.filename" w-full h-full rounded-full />
-        <p text-primary font-cursive text-3xl>
-          @{{ note.author?.at_username }}
-        </p>
+      <p class="font-semibold text-2xl mb-4 text-center">
+        {{ note.description }}
+      </p>
+
+      <div class="author center gap-2">
+        <div class="img-frame w-20 aspect-square relative">
+          <img
+            class="w-full h-auto rounded-full"
+            :src="note.author?.image.filename"
+            :alt="note.author?.image.alt"
+          />
+        </div>
+        <div>
+          <h5
+            class="text-3xl font-cursive text-primary"
+            :title="note.author.name"
+          >
+            @{{ note.author?.at_username }}
+          </h5>
+          <p class="text-xs font-thin">
+            <span v-if="story.updated_at">
+              updated &middot; {{ formatDate(new Date(story.created_at)) }}
+            </span>
+            <span v-else>
+              posted &middot; {{ formatDate(new Date(story.created_at)) }}
+            </span>
+          </p>
+        </div>
       </div>
     </div>
 
@@ -81,9 +98,9 @@ useHead({
       <div class="overlay" absolute inset-0 h-full w-full bg-black opacity-0 />
 
       <div absolute bottom-2 right-2 font-mono text-yellow>
-        <time :datetime="story.published_at">{{
-          story.published_at || story.created_at
-        }}</time>
+        <time :datetime="story.published_at">
+          {{ story.created_at }}
+        </time>
       </div>
     </div>
 
@@ -141,5 +158,29 @@ useHead({
 .cover-image-container:hover .overlay {
   opacity: 0.3;
   backdrop-filter: saturate(180%) blur(20px);
+}
+
+.author .img-frame:before {
+  content: "";
+  width: inherit;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  box-shadow: inset 0 0 0 2.5px var(--bg-color);
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+}
+
+.grid-bg {
+  background-image: linear-gradient(
+      rgba(32, 52, 144, 0.16) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to right,
+      rgba(32, 52, 144, 0.16) 1px,
+      rgba(247, 247, 247, 0.16) 1px
+    );
+  background-size: 24px 24px;
 }
 </style>

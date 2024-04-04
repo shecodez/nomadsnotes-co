@@ -5,9 +5,9 @@ const categories = [
   "Fund$",
   "Accommodation",
   "Passage",
-  "Fat",
-  "Action",
-  "Photography",
+  "Food",
+  "Adventure",
+  "Productivity",
 ];
 const menuNavigation = ["About", "WTF", "Shop", "Notes", "Contact"];
 
