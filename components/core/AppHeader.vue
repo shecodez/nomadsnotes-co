@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const config = useRuntimeConfig();
+//const config = useRuntimeConfig();
+//import SearchModal from "@/components/atomic/organisms/OSearchModal.vue";
+import { useDebounceFn } from "@vueuse/core";
+import type { Note } from "@/storyblok/types";
 
 const categories = [
   "Fund$",
@@ -10,6 +13,20 @@ const categories = [
   "Productivity",
 ];
 const menuNavigation = ["About", "WTF", "Shop", "Notes", "Contact"];
+
+export type SearchNotesResult = {
+  id: string;
+  full_slug: string;
+  content: Note;
+};
+
+const state = reactive({
+  query: "",
+  results: [] as SearchNotesResult[],
+
+  loading: false,
+  error: null,
+});
 
 const isOpenNavMenu = ref(false);
 function toggleMenu() {
@@ -22,6 +39,36 @@ function toggleSearch() {
   isOpenSearch.value = !isOpenSearch.value;
   isOpenNavMenu.value = false;
 }
+
+const searchNotes = async (query: string) => {
+  const resolveRelations = ["note.author"];
+
+  try {
+    state.loading = true;
+    const { data } = await useStoryblokApi().get("cdn/stories", {
+      starts_with: "notes/",
+      version: import.meta.env.DEV ? "draft" : "published",
+      resolve_relations: resolveRelations,
+      search_term: query,
+      per_page: 5,
+    });
+    //console.log("searching", data);
+
+    return data.stories;
+  } catch (e: any) {
+    state.error = e;
+  } finally {
+    state.loading = false;
+  }
+};
+
+const handleInputChange = useDebounceFn(async () => {
+  state.results = await searchNotes(state.query);
+}, 300);
+
+const handleInputBlur = () => {
+  setTimeout(() => (state.results = []), 300);
+};
 
 watch(isOpenNavMenu, (isOpen, _) => {
   const bodyEl = document.querySelector("body");
@@ -49,10 +96,7 @@ const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
 </script>
 
 <template>
-  <header
-    class="pg-border-x relative w-full sticky top-0 z-3"
-    :class="isOpen ? '' : 'pg-border-t'"
-  >
+  <header class="pg-border-t pg-border-x relative w-full sticky top-0 z-3">
     <div
       v-if="!isOpenNavMenu && !isOpenSearch"
       class="header-bg absolute inset-0 h-full z--1"
@@ -70,9 +114,7 @@ const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
         <!-- <div text-xs>{{ categories.join(" · ") }} ·</div> -->
       </div>
 
-      <div
-        class="w-full flex gap-2 flex-wrap-reverse items-center justify-center"
-      >
+      <div class="w-full center gap-2 flex-wrap-reverse">
         <ul flex flex-1 justify-end gap-2 text-2xl class="font-cursive">
           <li v-for="(_, i) in 3" :key="categories[i]">
             {{ categories[i] }}
@@ -145,12 +187,38 @@ const isOpen = computed(() => isOpenNavMenu.value || isOpenSearch.value);
     </div>
 
     <!-- Full Screen Search -->
-    <div v-if="isOpenSearch" mx-6>
+    <div v-if="isOpenSearch" mx-6 text-white>
       <form class="search-form">
-        <input type="search" value="" placeholder="Search..." text-4xl w-full />
-        <button type="button"><div i-carbon:microphone text-2xl /></button>
-        <button type="button"><div i-carbon:search text-2xl /></button>
+        <input
+          type="search"
+          v-model="state.query"
+          @input="handleInputChange"
+          placeholder="Search..."
+          text-4xl
+          w-full
+        />
+        <!-- <button type="button"><div i-carbon:microphone text-2xl /></button> -->
+        <button type="button" @click="handleInputChange">
+          <div i-carbon:search text-2xl />
+        </button>
       </form>
+
+      <!-- search results -->
+      <div>
+        <h5 v-if="state.results.length" text-xs text-primary my-2>Notes</h5>
+        <ul flex flex-col gap-1>
+          <template v-for="result in state.results" :key="result.id">
+            <li>
+              <nuxt-link
+                :to="`/${result.full_slug}`"
+                class="block p-4 text-sm bg-black hover:bg-primary"
+              >
+                {{ result.content.title }}
+              </nuxt-link>
+            </li>
+          </template>
+        </ul>
+      </div>
     </div>
   </div>
   <!-- </teleport> -->
@@ -288,7 +356,7 @@ img {
 .search-form {
   display: flex;
   align-items: center;
-  gap: 3;
+  gap: 0.5rem;
 }
 .search-form > input {
   background-color: transparent;
